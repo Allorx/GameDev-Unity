@@ -26,7 +26,7 @@ public class TimeLimitController : MonoBehaviour {
     }
 
     IEnumerator Timer () {
-        while (timeCounter > 0) {
+        while (timeCounter > 0 && GameManager.gamePlay) {
             timeCounter -= Time.deltaTime;
             yield return null;
         }

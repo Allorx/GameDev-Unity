@@ -5,16 +5,19 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour {
     public GameObject playerFlipPoint;
     public Collider2D collisionBox;
-    public Animator animatorControl;
     public static GameObject player;
+    Animator animControl;
     bool movementActivated = false;
     bool playerCanMove = true;
     bool flippedLeft;
 
+    void Awake () {
+        animControl = GetComponentInChildren<Animator> ();
+    }
+
     void Start () {
         TouchController.touchControllerActive = true;
         flippedLeft = true;
-        //animatorControl.enabled = false;
         player = gameObject;
     }
 
@@ -30,14 +33,21 @@ public class PlayerController : MonoBehaviour {
     void Flip () {
         if (TouchController.Tapped) {
             ScoreCounter.score++;
+            EatAnim ();
         }
         if (TouchController.TappedLeft && !flippedLeft) {
             transform.RotateAround (playerFlipPoint.transform.position, Vector3.up, 180);
             flippedLeft = true;
+            EatAnim ();
         } else if (TouchController.TappedRight && flippedLeft) {
             transform.RotateAround (playerFlipPoint.transform.position, Vector3.up, 180);
             flippedLeft = false;
+            EatAnim ();
         }
+    }
+
+    void EatAnim () {
+        animControl.Play ("eat", -1, 0f);
     }
 
     IEnumerator ActivateMovement () {
@@ -47,11 +57,10 @@ public class PlayerController : MonoBehaviour {
 
     public static void DestroyPlayer () {
         player.GetComponentInChildren<PlayerController> ().PlayDeathEffects ();
-        TouchController.touchControllerActive = false;
+
     }
 
     void PlayDeathEffects () {
-        //animatorControl.enabled = true;
         collisionBox.enabled = false;
     }
 }
