@@ -1,77 +1,55 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public float slowMotionScale = 0.5f;
     public float slowMotionDuration = 2f;
     public static bool gamePlay = false;
-    float timeLimit = 5f;
     bool gameReset = false;
 
-    void Awake()
-    {
+    void Awake () {
         Time.timeScale = 1f;
-        StartCoroutine(ResetGame());
+        StartCoroutine (ResetGame ());
     }
 
-    void Update()
-    {
-        Timer(TouchController.Tapped);
-        CheckGameStart();
+    void Update () {
+        CheckGameStart ();
     }
 
-    IEnumerator Timer(bool reset){
-        if(reset){
-
-        }
-        if(ScoreCounter.score >= 1 && ScoreCounter.score % 10 == 0){
-            timeLimit - 1/ScoreCounter.score;
-        }
-        yield return WaitForSecondsRealtime(timeLimit);
-        GameManager.EndGame();
-    }
-
-    void CheckGameStart()
-    {
-        if (gameReset && TouchController.Tapped)
-        {
+    void CheckGameStart () {
+        if (gameReset && TouchController.Tapped) {
             gamePlay = true;
             gameReset = false;
         }
     }
 
-    public void EndGame()
-    {
-        StartCoroutine(EndLevel());
+    public void EndGame () {
+        StartCoroutine (EndLevel ());
     }
 
-    IEnumerator EndLevel()
-    {
+    IEnumerator EndLevel () {
         gamePlay = false;
-
+        TouchController.touchControllerActive = false;
         Time.timeScale = slowMotionScale;
-        yield return new WaitForSecondsRealtime(slowMotionDuration);
+        yield return new WaitForSecondsRealtime (slowMotionDuration);
 
-        RestartLevel();
+        RestartLevel ();
     }
 
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    public void RestartLevel () {
+        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
     }
 
-    IEnumerator ResetGame()
-    {
-        yield return new WaitForSecondsRealtime(1f);
+    IEnumerator ResetGame () {
+        yield return new WaitForSecondsRealtime (1f);
         gameReset = true;
+        TouchController.touchControllerActive = true;
     }
 
-    void ResetAllScores()
-    {
+    void ResetAllScores () {
         //WARNING RESETS SCORE DATA !!!!!!!!!!!!!!!!!
-        PlayerPrefs.SetInt("HighScore", 0);
+        PlayerPrefs.SetInt ("HighScore", 0);
     }
 }

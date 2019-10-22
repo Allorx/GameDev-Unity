@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-public class TouchController : MonoBehaviour
-{
+public class TouchController : MonoBehaviour {
     public float magnitudeForSwipe = 35;
 
     public Vector2 SwipeDelta { get { return swipeDelta; } }
@@ -23,117 +22,84 @@ public class TouchController : MonoBehaviour
     Vector2 startTouch, swipeDelta;
     float screenWidth;
 
-    void Start()
-    {
+    void Start () {
         screenWidth = Screen.width;
     }
 
-    void Update()
-    {
-        if (touchControllerActive)
-        {
-            InputCheck();
-            TapCheck();
+    void Update () {
+        if (touchControllerActive) {
+            InputCheck ();
+            TapCheck ();
             //SwipeCheck();
-        }
-        else
-        {
+        } else {
             tapLeft = false;
             tapRight = false;
             tap = false;
         }
     }
 
-    void InputCheck()
-    {
+    void InputCheck () {
         // Editor Input
-        if (Input.GetMouseButtonDown(0))
-        {
+        if (Input.GetMouseButtonDown (0)) {
             isPressed = true;
             startTouch = Input.mousePosition;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            Reset();
+        } else if (Input.GetMouseButtonUp (0)) {
+            Reset ();
         }
 
         // Mobile Input
-        if (Input.touchCount > 0)
-        {
-            if (Input.touches[0].phase == TouchPhase.Began)
-            {
+        if (Input.touchCount > 0) {
+            if (Input.touches[0].phase == TouchPhase.Began) {
                 isPressed = true;
                 startTouch = Input.touches[0].position;
-            }
-            else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
-            {
-                Reset();
+            } else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled) {
+                Reset ();
             }
         }
     }
 
-    void TapCheck()
-    {
+    void TapCheck () {
         tapLeft = false;
         tapRight = false;
         tap = false;
-        if (isPressed && tapReset)
-        {
+        if (isPressed && tapReset) {
             tap = true;
-            if (startTouch.x < screenWidth / 2)
-            {
+            if (startTouch.x < screenWidth / 2) {
                 tapLeft = true;
-            }
-            else if (startTouch.x > screenWidth / 2)
-            {
+            } else if (startTouch.x > screenWidth / 2) {
                 tapRight = true;
             }
             tapReset = false;
         }
     }
 
-    void SwipeCheck()
-    {
+    void SwipeCheck () {
         swipeLeft = swipeDown = swipeRight = swipeUp = false;
         // Calculate Swipe Distance
         swipeDelta = Vector2.zero;
-        if (isPressed)
-        {
-            if (Input.touchCount > 0)
-            {
+        if (isPressed) {
+            if (Input.touchCount > 0) {
                 swipeDelta = Input.touches[0].position - startTouch;
-            }
-            else if (Input.GetMouseButton(0))
-            {
-                swipeDelta = (Vector2)Input.mousePosition - startTouch;
+            } else if (Input.GetMouseButton (0)) {
+                swipeDelta = (Vector2) Input.mousePosition - startTouch;
             }
         }
         // Swipe Direction
-        if (swipeDelta.magnitude > magnitudeForSwipe)
-        {
+        if (swipeDelta.magnitude > magnitudeForSwipe) {
             float x = swipeDelta.x;
             float y = swipeDelta.y;
-            if (Mathf.Abs(x) > Mathf.Abs(y))
-            {
+            if (Mathf.Abs (x) > Mathf.Abs (y)) {
                 // Left or Right
-                if (x < 0)
-                {
+                if (x < 0) {
                     swipeLeft = true;
-                }
-                else
-                {
+                } else {
                     swipeRight = true;
                 }
-            }
-            else
-            {
+            } else {
                 // Up or Down
-                if (y < 0)
-                {
+                if (y < 0) {
                     swipeDown = true;
-                }
-                else
-                {
+                } else {
                     swipeUp = true;
                 }
             }
@@ -141,8 +107,7 @@ public class TouchController : MonoBehaviour
         }
     }
 
-    void Reset()
-    {
+    void Reset () {
         startTouch = swipeDelta = Vector2.zero;
         isPressed = false;
         tapReset = true;
