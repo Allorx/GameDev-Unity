@@ -30,6 +30,6 @@ public class TimeLimitController : MonoBehaviour {
             timeCounter -= Time.deltaTime;
             yield return null;
         }
-        FindObjectOfType<GameManager> ().EndGame ();
+        PlayerController.DestroyPlayer ();
     }
 }
