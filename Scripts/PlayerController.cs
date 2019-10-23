@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour {
     public GameObject playerFlipPoint;
     public Collider2D collisionBox;
     public static GameObject player;
+    public Transform playerTransform;
+    public Vector3 deathTransform = new Vector3 (0, -0.1f, 0);
     Animator animControl;
     bool movementActivated = false;
     bool playerCanMove = true;
@@ -57,10 +59,11 @@ public class PlayerController : MonoBehaviour {
 
     public static void DestroyPlayer () {
         player.GetComponentInChildren<PlayerController> ().PlayDeathEffects ();
-
     }
 
     void PlayDeathEffects () {
+        animControl.Play ("death", -1, 0f);
+        playerTransform.position += deathTransform;
         collisionBox.enabled = false;
     }
 }

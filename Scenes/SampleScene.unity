@@ -665,6 +665,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cutie_idle_saprkle_1_Faded_WHITE
       objectReference: {fileID: 0}
+    - target: {fileID: -7007011593607791872, guid: e0e8e3bfd60a64319bca01d351f2b96e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8517493916302581954, guid: e0e8e3bfd60a64319bca01d351f2b96e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -725,6 +730,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 1df614bdd853b42d2af6994ffe656f96, type: 2}
+    - target: {fileID: 6773423969703771881, guid: e0e8e3bfd60a64319bca01d351f2b96e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 6437531721940673314, guid: e0e8e3bfd60a64319bca01d351f2b96e,
     type: 3}
@@ -1041,10 +1051,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 0.5, y: 1}
-    adaptiveTilingThreshold: 0.5
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -1065,6 +1075,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerFlipPoint: {fileID: 283391359}
   collisionBox: {fileID: 1964303524}
+  playerTransform: {fileID: 1964303527}
+  deathTransform: {x: 0, y: -0.1, z: 0}
 --- !u!4 &1964303527
 Transform:
   m_ObjectHideFlags: 0
