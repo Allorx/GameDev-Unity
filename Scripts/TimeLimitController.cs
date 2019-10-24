@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TimeLimitController : MonoBehaviour {
     public Image healthBar;
     public float timeCounter = 3f;
-    float timeLimit = 3f;
+    public float timeLimit = 3f;
     bool activatedTimer = false;
 
     void Update () {
@@ -15,8 +15,10 @@ public class TimeLimitController : MonoBehaviour {
             activatedTimer = true;
             StartCoroutine (Timer ());
         }
-        if (TouchController.Tapped && ScoreCounter.score >= 1 && ScoreCounter.score % 20 == 0) {
-            timeLimit -= 20 / ScoreCounter.score;
+        if (TouchController.Tapped && timeLimit > 0.5 && ScoreCounter.score >= 1 && ScoreCounter.score % 20 == 0) {
+            timeLimit -= 20f / ScoreCounter.score;
+            timeCounter -= 20f / ScoreCounter.score;
+            Debug.Log ("Decreased time" + timeLimit);
         }
         if (TouchController.Tapped && timeCounter < timeLimit - timeCounter) {
             timeCounter += 0.2f;
