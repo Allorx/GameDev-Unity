@@ -21,8 +21,8 @@ public class ObjectManager : MonoBehaviour {
         if (colliderInfo.gameObject.tag == "DestroyVolume" && canBeDestroyed) {
             gameObject.SetActive (false);
         } else if (colliderInfo.gameObject.tag == "Player") {
-            PlayerController.DestroyPlayer ();
             FindObjectOfType<GameManager> ().EndGame ();
+            PlayerController.DestroyPlayer ();
         }
     }
 }
