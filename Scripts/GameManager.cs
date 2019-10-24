@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour {
 
     void Awake () {
         Time.timeScale = 1f;
+    }
+
+    public void StartGame () {
         StartCoroutine (ResetGame ());
     }
 
@@ -43,9 +46,10 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator ResetGame () {
-        yield return new WaitForSecondsRealtime (1f);
-        gameReset = true;
+        FindObjectOfType<ButtonController> ().HideButton ();
+        yield return new WaitForSecondsRealtime (0.5f);
         TouchController.touchControllerActive = true;
+        gameReset = true;
     }
 
     void ResetAllScores () {

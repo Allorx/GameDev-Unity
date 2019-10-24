@@ -11,6 +11,7 @@ public class ScoreCounter : MonoBehaviour {
     bool resetScoreOnce = true;
 
     void Awake () {
+        ButtonController.startScore = false;
         lastScore = 0;
         scoreText.characterSize = 1.5f;
 
@@ -23,7 +24,7 @@ public class ScoreCounter : MonoBehaviour {
     }
 
     void Update () {
-        if (GameManager.gamePlay && score != 0) {
+        if (ButtonController.startScore && score != 0) {
             // Make transition from Highscore to 0
             ScoreReset ();
             scoreText.text = score.ToString ();

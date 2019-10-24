@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Start () {
-        TouchController.touchControllerActive = true;
         flippedLeft = true;
         player = gameObject;
     }

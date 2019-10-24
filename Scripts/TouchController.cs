@@ -11,9 +11,9 @@ public class TouchController : MonoBehaviour {
     public static bool Tapped { get { return tap; } }
     public static bool TappedLeft { get { return tapLeft; } }
     public static bool TappedRight { get { return tapRight; } }
-    public static bool touchControllerActive = true;
+    public static bool touchControllerActive = false;
 
-    public bool isPressed;
+    public bool isPressed = false;
     static bool tap = false;
     static bool tapLeft;
     static bool tapRight;
