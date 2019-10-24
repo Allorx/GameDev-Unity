@@ -21,7 +21,7 @@ public class TimeLimitController : MonoBehaviour {
             Debug.Log ("Decreased time" + timeLimit);
         }
         if (TouchController.Tapped && timeCounter < timeLimit - timeCounter) {
-            timeCounter += 0.2f;
+            timeCounter += 0.25f;
         } else if (TouchController.Tapped && timeCounter < timeLimit) {
             timeCounter = timeLimit;
         }
