@@ -42,6 +42,5 @@ public class TimeLimitController : MonoBehaviour
             yield return null;
         }
         FindObjectOfType<GameManager>().EndGame();
-        PlayerController.DestroyPlayer();
     }
 }

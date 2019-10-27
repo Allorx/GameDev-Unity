@@ -31,7 +31,6 @@ public class ObjectManager : MonoBehaviour
         else if (colliderInfo.gameObject.tag == "Player")
         {
             FindObjectOfType<GameManager>().EndGame();
-            PlayerController.DestroyPlayer();
         }
     }
 }

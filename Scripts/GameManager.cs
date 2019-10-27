@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndLevel()
     {
+        PlayerController.DestroyPlayer();
         gamePlay = false;
         TouchController.touchControllerActive = false;
         Time.timeScale = slowMotionScale;
