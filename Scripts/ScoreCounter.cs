@@ -15,7 +15,7 @@ public class ScoreCounter : MonoBehaviour
     {
         ButtonController.startScore = false;
         lastScore = 0;
-        scoreText.characterSize = 1.5f;
+        scoreText.characterSize = 5f;
 
         if (PlayerPrefs.GetInt("FirstSave") == 1)
         {
@@ -76,11 +76,11 @@ public class ScoreCounter : MonoBehaviour
     {
         if (score > 9999)
         {
-            scoreText.characterSize = 1;
+            scoreText.characterSize = 4;
         }
         else if (score > 99)
         {
-            scoreText.characterSize = 1.2f;
+            scoreText.characterSize = 4.5f;
         }
     }
 }
