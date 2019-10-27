@@ -13,7 +13,7 @@ public class TimeLimitController : MonoBehaviour
     void Update()
     {
         healthBar.fillAmount = timeCounter / timeLimit;
-        if (!activatedTimer && GameManager.gamePlay)
+        if (!activatedTimer && GameManager.gamePlay && ButtonController.startScore)
         {
             activatedTimer = true;
             StartCoroutine(Timer());
