@@ -9,15 +9,32 @@ public class GameManager : MonoBehaviour
     public float slowMotionDuration = 2f;
     public static bool gamePlay = false;
     bool gameReset = false;
+    static bool gameEnded = false;
 
     void Awake()
     {
         Time.timeScale = 1f;
     }
 
+    void Start()
+    {
+        if (gameEnded)
+        {
+            StartCoroutine(ResetGame());
+            gameEnded = false;
+        }
+    }
+
     public void StartGame()
     {
-        StartCoroutine(ResetGame());
+        if (gameEnded)
+        {
+            RestartLevel();
+        }
+        else
+        {
+            StartCoroutine(ResetGame());
+        }
     }
 
     void Update()
@@ -42,11 +59,13 @@ public class GameManager : MonoBehaviour
     IEnumerator EndLevel()
     {
         PlayerController.DestroyPlayer();
+
+        gameEnded = true;
         gamePlay = false;
         TouchController.touchControllerActive = false;
         Time.timeScale = slowMotionScale;
         yield return new WaitForSecondsRealtime(slowMotionDuration);
-        RestartLevel();
+        FindObjectOfType<ButtonController>().RestartButton();
     }
 
     public void RestartLevel()

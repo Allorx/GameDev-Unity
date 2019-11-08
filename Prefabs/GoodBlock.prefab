@@ -115,6 +115,7 @@ MonoBehaviour:
   - {fileID: 3589845779319184526, guid: 4bb95524ea0954ac5ad21f36e82ecd80, type: 3}
   - {fileID: -8548466655734529709, guid: 190c2b012da814665a9dd38b0d959034, type: 3}
   - {fileID: -1241946091501096367, guid: d0e92d968bbdd4dd58fc25fd06531e9f, type: 3}
+  - {fileID: -3378629362442859734, guid: 737b5eda631a54dd5833197a6dbd9b68, type: 3}
   badBlockSprite: []
   isGoodBlock: 1
   isBadBlock: 0

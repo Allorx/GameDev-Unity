@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class TutorialController : MonoBehaviour
 {
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (ScoreCounter.score > 0 && TouchController.Tapped)
