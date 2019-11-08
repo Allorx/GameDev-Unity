@@ -2,67 +2,82 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     public GameObject playerFlipPoint;
     public Collider2D collisionBox;
     public static GameObject player;
     public Transform playerTransform;
-    public Vector3 deathTransform = new Vector3 (0, -0.1f, 0);
+    public Vector3 deathTransform = new Vector3(0, -0.1f, 0);
     Animator animControl;
     bool movementActivated = false;
     bool playerCanMove = true;
     bool flippedLeft;
 
-    void Awake () {
-        animControl = GetComponentInChildren<Animator> ();
+    void Awake()
+    {
+        animControl = GetComponentInChildren<Animator>();
     }
 
-    void Start () {
-        TouchController.touchControllerActive = true;
+    void Start()
+    {
         flippedLeft = true;
         player = gameObject;
     }
 
-    void Update () {
-        if (playerCanMove) {
-            Flip ();
-        } else if (!movementActivated && GameManager.gamePlay) {
+    void Update()
+    {
+        if (playerCanMove)
+        {
+            Flip();
+        }
+        else if (!movementActivated && GameManager.gamePlay)
+        {
             movementActivated = true;
-            StartCoroutine (ActivateMovement ());
+            StartCoroutine(ActivateMovement());
         }
     }
 
-    void Flip () {
-        if (TouchController.Tapped) {
+    void Flip()
+    {
+        if (TouchController.Tapped)
+        {
             ScoreCounter.score++;
-            EatAnim ();
+            EatAnim();
         }
-        if (TouchController.TappedLeft && !flippedLeft) {
-            transform.RotateAround (playerFlipPoint.transform.position, Vector3.up, 180);
+        if (TouchController.TappedLeft && !flippedLeft)
+        {
+            transform.RotateAround(playerFlipPoint.transform.position, Vector3.up, 180);
             flippedLeft = true;
-            EatAnim ();
-        } else if (TouchController.TappedRight && flippedLeft) {
-            transform.RotateAround (playerFlipPoint.transform.position, Vector3.up, 180);
+            EatAnim();
+        }
+        else if (TouchController.TappedRight && flippedLeft)
+        {
+            transform.RotateAround(playerFlipPoint.transform.position, Vector3.up, 180);
             flippedLeft = false;
-            EatAnim ();
+            EatAnim();
         }
     }
 
-    void EatAnim () {
-        animControl.Play ("eat", -1, 0f);
+    void EatAnim()
+    {
+        animControl.Play("eat", -1, 0f);
     }
 
-    IEnumerator ActivateMovement () {
-        yield return new WaitForSecondsRealtime (0.2f);
+    IEnumerator ActivateMovement()
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
         playerCanMove = true;
     }
 
-    public static void DestroyPlayer () {
-        player.GetComponentInChildren<PlayerController> ().PlayDeathEffects ();
+    public static void DestroyPlayer()
+    {
+        player.GetComponentInChildren<PlayerController>().PlayDeathEffects();
     }
 
-    void PlayDeathEffects () {
-        animControl.Play ("death", -1, 0f);
+    void PlayDeathEffects()
+    {
+        animControl.Play("death", -1, 0f);
         playerTransform.position += deathTransform;
         collisionBox.enabled = false;
     }
