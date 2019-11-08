@@ -114,6 +114,8 @@ MonoBehaviour:
   badBlockSprite:
   - {fileID: 3869431334331139055, guid: af1d738d20fb04e02b985ba346cd3483, type: 3}
   - {fileID: 184969374498673056, guid: 74ef7cc87f8374c19a37f192179edd15, type: 3}
+  - {fileID: -7410698567707918323, guid: 665dcc0927c1946b7a378e16da69603a, type: 3}
+  - {fileID: 867487307165867579, guid: bb1a00ac704d84f728fcb9737233f9bf, type: 3}
   isGoodBlock: 0
   isBadBlock: 1
 --- !u!61 &-100468953675084381
