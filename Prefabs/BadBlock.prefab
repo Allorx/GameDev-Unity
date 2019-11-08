@@ -117,6 +117,7 @@ MonoBehaviour:
   - {fileID: 867487307165867579, guid: bb1a00ac704d84f728fcb9737233f9bf, type: 3}
   - {fileID: -7410698567707918323, guid: 665dcc0927c1946b7a378e16da69603a, type: 3}
   - {fileID: -1589833436211073537, guid: 669bab8f22ec24359ae8f1ccaaa16aba, type: 3}
+  - {fileID: 8643836118308431344, guid: bfb3a3bc14da3478dbbecf544a9aa33f, type: 3}
   isGoodBlock: 0
   isBadBlock: 1
 --- !u!61 &-100468953675084381
