@@ -14,4 +14,9 @@ public class ButtonController : MonoBehaviour
         startScore = true;
         button.SetActive(false);
     }
+
+    public void RestartButton()
+    {
+        button.SetActive(true);
+    }
 }

@@ -11,6 +11,7 @@ public class BlockSpawn : MonoBehaviour
     public int initialAmount = 11;
     public Vector3 startPosition = new Vector3(0, -2f, 0);
     public Vector3 distancePosition = new Vector3(0, 1, 0);
+    public Vector3 blockOffset = new Vector3(-1, 0, 0);
     bool spawnedBad = true;
     bool sideToSpawn;
     int randNum;
@@ -94,11 +95,11 @@ public class BlockSpawn : MonoBehaviour
             case "Bad":
                 if (sideToSpawn)
                 {
-                    objectPooler.SpawnFromPool(block, position, Quaternion.Euler(0, 180, 0));
+                    objectPooler.SpawnFromPool(block, position - blockOffset, Quaternion.Euler(0, 180, 0));
                 }
                 else
                 {
-                    objectPooler.SpawnFromPool(block, position, Quaternion.identity);
+                    objectPooler.SpawnFromPool(block, position + blockOffset, Quaternion.identity);
                 }
                 break;
             default:

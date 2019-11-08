@@ -427,6 +427,7 @@ MonoBehaviour:
   initialAmount: 12
   startPosition: {x: 0, y: -1, z: 0}
   distancePosition: {x: 0, y: 1, z: 0}
+  blockOffset: {x: -1, y: 0, z: 0}
 --- !u!4 &313836184
 Transform:
   m_ObjectHideFlags: 0
@@ -441,6 +442,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &320214605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1293603593108180, guid: 92d60a2e17d9a4bb8bd3801b14fc2926,
+    type: 3}
+  m_PrefabInstance: {fileID: 2015949707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!102 &320214606 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 102362823683043728, guid: 92d60a2e17d9a4bb8bd3801b14fc2926,
+    type: 3}
+  m_PrefabInstance: {fileID: 2015949707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &320214607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320214605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a97c4baaef24a3ea223b6b44e51e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 320214606}
 --- !u!1 &437837787
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +523,7 @@ GameObject:
   - component: {fileID: 439505919}
   - component: {fileID: 439505918}
   - component: {fileID: 439505917}
+  - component: {fileID: 439505921}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -587,6 +614,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &439505921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439505916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b588eee78c94b06aa4ab5337b76ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 487234281}
+  tutorial: {fileID: 2106677121}
 --- !u!1 &457275983
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +683,6 @@ GameObject:
   m_Component:
   - component: {fileID: 487234282}
   - component: {fileID: 487234285}
-  - component: {fileID: 487234286}
   - component: {fileID: 487234284}
   - component: {fileID: 487234283}
   m_Layer: 5
@@ -763,20 +803,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487234281}
   m_CullTransparentMesh: 0
---- !u!114 &487234286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487234281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b588eee78c94b06aa4ab5337b76ec0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 487234281}
-  tutorial: {fileID: 2106677121}
 --- !u!1 &653260035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,14 +1625,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Play
       objectReference: {fileID: 0}
-    - target: {fileID: 1293603593108180, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1293603593108180, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16
@@ -1617,7 +1635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1651,50 +1669,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 23420551826632114, guid: 92d60a2e17d9a4bb8bd3801b14fc2926,
-        type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 102362823683043728, guid: 92d60a2e17d9a4bb8bd3801b14fc2926,
-        type: 3}
-      propertyPath: m_Color.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 102362823683043728, guid: 92d60a2e17d9a4bb8bd3801b14fc2926,
-        type: 3}
-      propertyPath: m_CharacterSize
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 102362823683043728, guid: 92d60a2e17d9a4bb8bd3801b14fc2926,
-        type: 3}
-      propertyPath: m_Text
-      value: Play
-      objectReference: {fileID: 0}
-    - target: {fileID: 102362823683043728, guid: 92d60a2e17d9a4bb8bd3801b14fc2926,
-        type: 3}
-      propertyPath: m_Anchor
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 102362823683043728, guid: 92d60a2e17d9a4bb8bd3801b14fc2926,
-        type: 3}
-      propertyPath: m_Alignment
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 4427988570406167060, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
+    - {fileID: 4580500957652632149, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
 --- !u!4 &1947474434 stripped
 Transform:

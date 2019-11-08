@@ -112,7 +112,8 @@ MonoBehaviour:
   spriteRend: {fileID: 8113881387597125804}
   goodBlockSprite: []
   badBlockSprite:
-  - {fileID: 21300000, guid: c88722e0a9b6341ef9fa60055387d5c7, type: 3}
+  - {fileID: 3869431334331139055, guid: af1d738d20fb04e02b985ba346cd3483, type: 3}
+  - {fileID: 184969374498673056, guid: 74ef7cc87f8374c19a37f192179edd15, type: 3}
   isGoodBlock: 0
   isBadBlock: 1
 --- !u!61 &-100468953675084381
@@ -128,7 +129,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.87568295, y: 0.027580023}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.75, y: 0.5}
