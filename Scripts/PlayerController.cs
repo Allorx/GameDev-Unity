@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     void EatAnim()
     {
         animControl.Play("eat", -1, 0f);
+        ParticleController.ParticleFall();
     }
 
     IEnumerator ActivateMovement()
