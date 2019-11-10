@@ -6,12 +6,14 @@ public class BlockSpawn : MonoBehaviour
 {
     public string[] objectTagBad;
     public string[] objectTagGood;
+    public string[] objectTagStar;
     public ObjectPooler objectPooler;
     public int maxNumGood = 1;
     public int initialAmount = 11;
     public Vector3 startPosition = new Vector3(0, -2f, 0);
     public Vector3 distancePosition = new Vector3(0, 1, 0);
     public Vector3 blockOffset = new Vector3(-1, 0, 0);
+    public Vector3 starOffset = new Vector3(-1, 0, 0);
     bool spawnedBad = true;
     bool sideToSpawn;
     int randNum;
@@ -41,6 +43,10 @@ public class BlockSpawn : MonoBehaviour
                 if (spawnedBad)
                 {
                     numOfGood = Random.Range(0, maxNumGood) + 1;
+                }
+                if (ScoreCounter.score % 20 == 0)
+                {
+                    Spawn(objectTagStar[randNum], transform.position);
                 }
                 sideToSpawn = SideSelection(splitChance);
                 randNum = Random.Range(0, objectTagGood.Length);
@@ -100,6 +106,16 @@ public class BlockSpawn : MonoBehaviour
                 else
                 {
                     objectPooler.SpawnFromPool(block, position + blockOffset, Quaternion.identity);
+                }
+                break;
+            case "Star":
+                if (sideToSpawn)
+                {
+                    objectPooler.SpawnFromPool(block, position - starOffset, Quaternion.Euler(0, 180, 0));
+                }
+                else
+                {
+                    objectPooler.SpawnFromPool(block, position + starOffset, Quaternion.identity);
                 }
                 break;
             default:

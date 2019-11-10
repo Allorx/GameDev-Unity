@@ -4,21 +4,26 @@ using UnityEngine;
 public class ObjectManager : MonoBehaviour
 {
     public SpriteRenderer spriteRend;
+    public Color[] spriteColour;
     public Sprite[] goodBlockSprite;
     public Sprite[] badBlockSprite;
     public bool isGoodBlock = false;
     public bool isBadBlock = false;
+    public bool isStar = false;
     bool canBeDestroyed = true;
+    int randomNumber;
 
     void OnEnable()
     {
         if (isGoodBlock)
         {
-            spriteRend.sprite = goodBlockSprite[Random.Range(0, goodBlockSprite.Length)];
+            randomNumber = Random.Range(0, goodBlockSprite.Length);
+            spriteRend.sprite = goodBlockSprite[randomNumber];
         }
         else if (isBadBlock)
         {
-            spriteRend.sprite = badBlockSprite[Random.Range(0, badBlockSprite.Length)];
+            randomNumber = Random.Range(0, badBlockSprite.Length);
+            spriteRend.sprite = badBlockSprite[randomNumber];
         }
     }
 
@@ -26,11 +31,27 @@ public class ObjectManager : MonoBehaviour
     {
         if (colliderInfo.gameObject.tag == "DestroyVolume" && canBeDestroyed)
         {
-            gameObject.SetActive(false);
+            if (isStar)
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                ParticleController.ParticleFall(spriteColour[2]);
+                gameObject.SetActive(false);
+            }
         }
         else if (colliderInfo.gameObject.tag == "Player")
         {
-            FindObjectOfType<GameManager>().EndGame();
+            if (isStar)
+            {
+                ScoreCounter.score += 5;
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                FindObjectOfType<GameManager>().EndGame();
+            }
         }
     }
 }

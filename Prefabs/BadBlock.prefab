@@ -110,16 +110,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRend: {fileID: 8113881387597125804}
+  spriteColour:
+  - {r: 0.9921569, g: 0.9215687, b: 0.6784314, a: 1}
+  - {r: 0.96178025, g: 0.6273585, b: 1, a: 1}
+  - {r: 0.8962264, g: 0.6591881, b: 0.47770557, a: 1}
+  - {r: 0.35640463, g: 0.6415094, b: 0.23300104, a: 1}
+  - {r: 1, g: 0.54509807, b: 0.17254902, a: 1}
+  - {r: 0.40784317, g: 0.21960786, b: 0.19607845, a: 1}
   goodBlockSprite: []
   badBlockSprite:
   - {fileID: 3869431334331139055, guid: af1d738d20fb04e02b985ba346cd3483, type: 3}
-  - {fileID: 184969374498673056, guid: 74ef7cc87f8374c19a37f192179edd15, type: 3}
+  - {fileID: 155526710055778935, guid: 74ef7cc87f8374c19a37f192179edd15, type: 3}
   - {fileID: 867487307165867579, guid: bb1a00ac704d84f728fcb9737233f9bf, type: 3}
   - {fileID: -7410698567707918323, guid: 665dcc0927c1946b7a378e16da69603a, type: 3}
   - {fileID: -1589833436211073537, guid: 669bab8f22ec24359ae8f1ccaaa16aba, type: 3}
   - {fileID: 8643836118308431344, guid: bfb3a3bc14da3478dbbecf544a9aa33f, type: 3}
   isGoodBlock: 0
   isBadBlock: 1
+  isStar: 0
 --- !u!61 &-100468953675084381
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,5 +173,5 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
