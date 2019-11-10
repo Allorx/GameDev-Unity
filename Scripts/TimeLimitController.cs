@@ -8,7 +8,9 @@ public class TimeLimitController : MonoBehaviour
     public Image healthBar;
     public float timeCounter = 3f;
     public float timeLimit = 3f;
+    public float starWaitTime = 5f;
     bool activatedTimer = false;
+    Coroutine timerRoutine;
 
     void Update()
     {
@@ -17,7 +19,7 @@ public class TimeLimitController : MonoBehaviour
         if (!activatedTimer && GameManager.gamePlay && ButtonController.startScore)
         {
             activatedTimer = true;
-            StartCoroutine(Timer());
+            timerRoutine = StartCoroutine(Timer());
         }
         if (TouchController.Tapped && timeLimit > 0.5 && ScoreCounter.score >= 1 && ScoreCounter.score % 20 == 0)
         {
@@ -33,6 +35,18 @@ public class TimeLimitController : MonoBehaviour
         {
             timeCounter = timeLimit;
         }
+    }
+
+    public void TimePause()
+    {
+        StopCoroutine(timerRoutine);
+        StartCoroutine(WaitTime());
+    }
+
+    IEnumerator WaitTime()
+    {
+        yield return new WaitForSecondsRealtime(starWaitTime);
+        timerRoutine = StartCoroutine(Timer());
     }
 
     IEnumerator Timer()

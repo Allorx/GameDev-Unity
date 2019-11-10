@@ -2019,6 +2019,7 @@ MonoBehaviour:
   healthBar: {fileID: 1809995726}
   timeCounter: 3
   timeLimit: 3
+  starWaitTime: 4
 --- !u!1 &1867709925
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,8 +10,14 @@ public class ObjectManager : MonoBehaviour
     public bool isGoodBlock = false;
     public bool isBadBlock = false;
     public bool isStar = false;
+    TimeLimitController timeLimitControl;
     bool canBeDestroyed = true;
     int randomNumber;
+
+    void Awake()
+    {
+        timeLimitControl = FindObjectOfType<TimeLimitController>();
+    }
 
     void OnEnable()
     {
@@ -45,7 +51,7 @@ public class ObjectManager : MonoBehaviour
         {
             if (isStar)
             {
-                ScoreCounter.score += 5;
+                timeLimitControl.TimePause();
                 gameObject.SetActive(false);
             }
             else
