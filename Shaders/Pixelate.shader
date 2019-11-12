@@ -1,6 +1,4 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Custom/Pixelate"{
+﻿Shader "Custom/Pixelate"{
 	Properties{
 		_MainTex ("Texture", 2D) = "white" {}
 		_PixelateX("Pixelate X",Int) = 5

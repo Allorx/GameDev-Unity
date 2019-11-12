@@ -47,6 +47,7 @@ public class TimeLimitController : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(starWaitTime);
         timerRoutine = StartCoroutine(Timer());
+        PostProcessController.EndPostProcess();
     }
 
     IEnumerator Timer()

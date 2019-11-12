@@ -52,6 +52,7 @@ public class ObjectManager : MonoBehaviour
             if (isStar)
             {
                 timeLimitControl.TimePause();
+                PostProcessController.StartPostProcess();
                 gameObject.SetActive(false);
             }
             else
