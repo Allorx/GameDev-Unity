@@ -57,10 +57,10 @@ public class TimeLimitController : MonoBehaviour
             while (timeCounter > 0)
             {
                 timeCounter -= Time.deltaTime;
+                yield return null;
             }
             FindObjectOfType<GameManager>().EndGame();
         }
-        yield return null;
     }
 
     public void StopTimer()
