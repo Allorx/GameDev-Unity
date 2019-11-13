@@ -21,6 +21,10 @@ public class ScoreCounter : MonoBehaviour
         {
             firstSave = true;
         }
+        else
+        {
+            gameObject.SetActive(false);
+        }
         if (PlayerPrefs.HasKey("HighScore"))
         {
             score = PlayerPrefs.GetInt("HighScore");
@@ -40,6 +44,7 @@ public class ScoreCounter : MonoBehaviour
 
     void ScoreReset()
     {
+        gameObject.SetActive(true);
         while (resetScoreOnce)
         {
             resetScoreOnce = false;

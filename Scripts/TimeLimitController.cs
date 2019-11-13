@@ -39,7 +39,7 @@ public class TimeLimitController : MonoBehaviour
 
     public void TimePause()
     {
-        StopCoroutine(timerRoutine);
+        StopTimer();
         StartCoroutine(WaitTime());
     }
 
@@ -58,5 +58,10 @@ public class TimeLimitController : MonoBehaviour
             yield return null;
         }
         FindObjectOfType<GameManager>().EndGame();
+    }
+
+    public void StopTimer()
+    {
+        StopCoroutine(timerRoutine);
     }
 }

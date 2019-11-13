@@ -9,20 +9,12 @@ public class GameManager : MonoBehaviour
     public float slowMotionDuration = 2f;
     public static bool gamePlay = false;
     bool gameReset = false;
-    static bool gameEnded = false;
+    public static bool gameEnded = false;
 
     void Awake()
     {
+        //ResetAllScores(); //WARNING RESETS SCORE DATA AND PREFERENCES !!!!!!!!!!!!!!!!!
         Time.timeScale = 1f;
-    }
-
-    void Start()
-    {
-        if (gameEnded)
-        {
-            StartCoroutine(ResetGame());
-            gameEnded = false;
-        }
     }
 
     public void StartGame()
@@ -30,10 +22,11 @@ public class GameManager : MonoBehaviour
         if (gameEnded)
         {
             RestartLevel();
+            gameEnded = false;
         }
         else
         {
-            StartCoroutine(ResetGame());
+            StartCoroutine(ResetGame(false));
         }
     }
 
@@ -59,6 +52,7 @@ public class GameManager : MonoBehaviour
     IEnumerator EndLevel()
     {
         PlayerController.DestroyPlayer();
+        //FindObjectOfType<TimeLimitController>().StopTimer();
 
         gameEnded = true;
         gamePlay = false;
@@ -73,9 +67,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    IEnumerator ResetGame()
+    IEnumerator ResetGame(bool withButtons)
     {
-        FindObjectOfType<ButtonController>().HideButton();
+        if (!withButtons)
+        {
+            FindObjectOfType<ButtonController>().HideButton();
+        }
+
         yield return new WaitForSecondsRealtime(0.5f);
         TouchController.touchControllerActive = true;
         gameReset = true;
@@ -83,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     void ResetAllScores()
     {
-        //WARNING RESETS SCORE DATA !!!!!!!!!!!!!!!!!
-        PlayerPrefs.SetInt("HighScore", 0);
+        //WARNING RESETS SCORE DATA AND PREFERENCES !!!!!!!!!!!!!!!!!
+        PlayerPrefs.DeleteAll();
     }
 }

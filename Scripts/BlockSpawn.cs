@@ -72,7 +72,7 @@ public class BlockSpawn : MonoBehaviour
             {
                 if (spawnedBad)
                 {
-                    numOfGood = Random.Range(0, maxNumGood) + 1;
+                    numOfGood = Random.Range(0, maxNumGood) + 2;
                 }
                 sideToSpawn = SideSelection(splitChance);
                 randNum = Random.Range(0, objectTagGood.Length);

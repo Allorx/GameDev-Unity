@@ -9,7 +9,11 @@ public class PlayerController : MonoBehaviour
     public static GameObject player;
     public Transform playerTransform;
     public Vector3 deathTransform = new Vector3(0, -0.1f, 0);
-    Animator animControl;
+    public AnimatorOverrideController[] character;
+    public Sprite[] characterSprite;
+    public static AnimatorOverrideController[] characterList;
+    public static Sprite[] staticCharacterList;
+    static Animator animControl;
     bool movementActivated = false;
     bool playerCanMove = true;
     bool flippedLeft;
@@ -17,12 +21,27 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         animControl = GetComponentInChildren<Animator>();
+        characterList = character;
+        staticCharacterList = characterSprite;
+        PlayerController.SelectCharacter(0);
     }
 
     void Start()
     {
         flippedLeft = true;
         player = gameObject;
+    }
+
+    static void SaveSkin(int number)
+    {
+        PlayerPrefs.SetInt("CharacterNumber", number);
+    }
+
+    public static void SelectCharacter(int intCharacter)
+    {
+        animControl.runtimeAnimatorController = characterList[intCharacter];
+        animControl.Play("idle", -1, 0f);
+        SaveSkin(intCharacter);
     }
 
     void Update()
