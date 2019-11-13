@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     IEnumerator EndLevel()
     {
         PlayerController.DestroyPlayer();
+        PostProcessController.EndPostProcess();
         //FindObjectOfType<TimeLimitController>().StopTimer();
 
         gameEnded = true;
