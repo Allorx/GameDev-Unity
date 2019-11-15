@@ -8,7 +8,7 @@ public class PopulateGrid : MonoBehaviour
     public GameObject prefabSkins;
     Sprite[] skins;
 
-    void Enabled()
+    void OnEnable()
     {
         skins = PlayerController.staticCharacterList;
         Populate();
