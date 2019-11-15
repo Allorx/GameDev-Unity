@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public Sprite[] characterSprite;
     public static AnimatorOverrideController[] characterList;
     public static Sprite[] staticCharacterList;
+    public static bool[] charUnlocked;
     static Animator animControl;
     bool movementActivated = false;
     bool playerCanMove = true;
@@ -23,7 +24,9 @@ public class PlayerController : MonoBehaviour
         animControl = GetComponentInChildren<Animator>();
         characterList = character;
         staticCharacterList = characterSprite;
-        PlayerController.SelectCharacter(0);
+        charUnlocked = new bool[characterList.Length];
+        LoadCharacterUnlock();
+        LoadSkin();
     }
 
     void Start()
@@ -37,11 +40,19 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetInt("CharacterNumber", number);
     }
 
+    static void LoadSkin()
+    {
+        SelectCharacter(PlayerPrefs.GetInt("CharacterNumber"));
+    }
+
     public static void SelectCharacter(int intCharacter)
     {
-        animControl.runtimeAnimatorController = characterList[intCharacter];
-        animControl.Play("idle", -1, 0f);
-        SaveSkin(intCharacter);
+        if (charUnlocked[intCharacter])
+        {
+            animControl.runtimeAnimatorController = characterList[intCharacter];
+            animControl.Play("idle", -1, 0f);
+            SaveSkin(intCharacter);
+        }
     }
 
     void Update()
@@ -99,5 +110,30 @@ public class PlayerController : MonoBehaviour
         animControl.Play("death", -1, 0f);
         playerTransform.position += deathTransform;
         collisionBox.enabled = false;
+    }
+
+    public void SaveCharacterUnlock()
+    {
+        for (int i = 0; i < character.Length; i++)
+        {
+            PlayerPrefs.SetInt("unlock" + i.ToString(), charUnlocked[i] ? 1 : 0);
+        }
+    }
+
+    void LoadCharacterUnlock()
+    {
+        for (int i = 0; i < character.Length; i++)
+        {
+            charUnlocked[i] = PlayerPrefs.GetInt("unlock" + i.ToString()) == 1 ? true : false;
+        }
+        // unlock default character
+        charUnlocked[0] = true;
+    }
+
+    public void AchievementEffects()
+    {
+        //Say what achievement
+        //Activate effects
+
     }
 }

@@ -10,6 +10,7 @@ public class TimeLimitController : MonoBehaviour
     public float timeLimit = 3f;
     public float starWaitTime = 5f;
     bool activatedTimer = false;
+    bool starCollectFinished = false;
     Coroutine timerRoutine;
 
     void Update()
@@ -39,6 +40,7 @@ public class TimeLimitController : MonoBehaviour
 
     public void TimePause()
     {
+        starCollectFinished = false;
         StopTimer();
         StartCoroutine(WaitTime());
     }
@@ -46,8 +48,12 @@ public class TimeLimitController : MonoBehaviour
     IEnumerator WaitTime()
     {
         yield return new WaitForSecondsRealtime(starWaitTime);
-        timerRoutine = StartCoroutine(Timer());
-        PostProcessController.EndPostProcess();
+        starCollectFinished = true;
+        if (starCollectFinished)
+        {
+            timerRoutine = StartCoroutine(Timer());
+            PostProcessController.EndPostProcess();
+        }
     }
 
     IEnumerator Timer()

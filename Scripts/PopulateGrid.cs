@@ -8,7 +8,7 @@ public class PopulateGrid : MonoBehaviour
     public GameObject prefabSkins;
     Sprite[] skins;
 
-    void Awake()
+    void Enabled()
     {
         skins = PlayerController.staticCharacterList;
         Populate();
@@ -21,9 +21,19 @@ public class PopulateGrid : MonoBehaviour
         for (int i = 0; i < skins.Length; i++)
         {
             // Create new instances of our prefab until we've created as many as we specified
-            newObj = Instantiate(prefabSkins, transform);
-            newObj.GetComponentInChildren<SkinSelect>().characterNumber = i;
-            newObj.GetComponentInChildren<Image>().sprite = skins[i];
+            if (PlayerController.charUnlocked[i])
+            {
+                newObj = Instantiate(prefabSkins, transform);
+                newObj.GetComponentInChildren<SkinSelect>().characterNumber = i;
+                newObj.GetComponentInChildren<Image>().sprite = skins[i];
+            }
+            else
+            {
+                newObj = Instantiate(prefabSkins, transform);
+                newObj.GetComponentInChildren<SkinSelect>().characterNumber = i;
+                newObj.GetComponentInChildren<Image>().sprite = skins[i];
+                newObj.GetComponentInChildren<Image>().color = Color.black;
+            }
         }
 
     }

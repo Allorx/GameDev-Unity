@@ -8,6 +8,9 @@ public class SkinSelect : MonoBehaviour
 
     public void CharacterSelect()
     {
-        PlayerController.SelectCharacter(characterNumber);
+        if (PlayerController.charUnlocked[characterNumber])
+        {
+            PlayerController.SelectCharacter(characterNumber);
+        }
     }
 }

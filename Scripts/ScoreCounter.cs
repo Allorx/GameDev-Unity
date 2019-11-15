@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScoreCounter : MonoBehaviour
 {
     public TextMesh scoreText;
+    public static int stars;
     public static int score = 0;
     public static int lastScore = 0;
     bool firstSave = false;

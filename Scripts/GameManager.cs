@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
         TouchController.touchControllerActive = false;
         Time.timeScale = slowMotionScale;
         yield return new WaitForSecondsRealtime(slowMotionDuration);
+        AchievementController.CheckAchievements(ScoreCounter.score, ScoreCounter.stars);
         FindObjectOfType<ButtonController>().RestartButton();
     }
 
