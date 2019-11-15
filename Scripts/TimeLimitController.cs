@@ -52,12 +52,15 @@ public class TimeLimitController : MonoBehaviour
 
     IEnumerator Timer()
     {
-        while (timeCounter > 0 && GameManager.gamePlay)
+        if (GameManager.gamePlay)
         {
-            timeCounter -= Time.deltaTime;
-            yield return null;
+            while (timeCounter > 0)
+            {
+                timeCounter -= Time.deltaTime;
+                yield return null;
+            }
+            FindObjectOfType<GameManager>().EndGame();
         }
-        FindObjectOfType<GameManager>().EndGame();
     }
 
     public void StopTimer()
