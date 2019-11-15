@@ -5,13 +5,20 @@ using UnityEngine.UI;
 
 public class TimeLimitController : MonoBehaviour
 {
+    public Color starBar;
     public Image healthBar;
     public float timeCounter = 3f;
     public float timeLimit = 3f;
     public float starWaitTime = 5f;
     bool activatedTimer = false;
-    bool starCollectFinished = false;
     Coroutine timerRoutine;
+    Coroutine waitTimerRoutine;
+    Color originalColour;
+
+    void Awake()
+    {
+        originalColour = healthBar.color;
+    }
 
     void Update()
     {
@@ -40,20 +47,17 @@ public class TimeLimitController : MonoBehaviour
 
     public void TimePause()
     {
-        starCollectFinished = false;
+        healthBar.color = starBar;
         StopTimer();
-        StartCoroutine(WaitTime());
+        waitTimerRoutine = StartCoroutine(WaitTime());
     }
 
     IEnumerator WaitTime()
     {
         yield return new WaitForSecondsRealtime(starWaitTime);
-        starCollectFinished = true;
-        if (starCollectFinished)
-        {
-            timerRoutine = StartCoroutine(Timer());
-            PostProcessController.EndPostProcess();
-        }
+        timerRoutine = StartCoroutine(Timer());
+        PostProcessController.EndPostProcess();
+        healthBar.color = originalColour;
     }
 
     IEnumerator Timer()
@@ -72,5 +76,9 @@ public class TimeLimitController : MonoBehaviour
     public void StopTimer()
     {
         StopCoroutine(timerRoutine);
+        if (waitTimerRoutine != null)
+        {
+            StopCoroutine(waitTimerRoutine);
+        }
     }
 }

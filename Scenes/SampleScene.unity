@@ -2812,6 +2812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e161819a37004a38aa9491b9b716b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starBar: {r: 1, g: 0.90713394, b: 0, a: 1}
   healthBar: {fileID: 1809995726}
   timeCounter: 3
   timeLimit: 3
