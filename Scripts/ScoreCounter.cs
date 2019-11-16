@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ScoreCounter : MonoBehaviour
 {
     public TextMesh scoreText;
+    public TextMesh starText;
+    static TextMesh starTextStatic;
     public static int stars;
     public static int score = 0;
     public static int lastScore = 0;
@@ -14,22 +16,29 @@ public class ScoreCounter : MonoBehaviour
 
     void Awake()
     {
+        starTextStatic = starText;
         ButtonController.startScore = false;
+        score = 0;
         lastScore = 0;
         scoreText.characterSize = 5f;
 
-        if (PlayerPrefs.GetInt("FirstSave") == 1)
+        if (PlayerPrefs.HasKey("FirstSave"))
         {
             firstSave = true;
         }
         else
         {
-            gameObject.SetActive(false);
+            firstSave = false;
         }
         if (PlayerPrefs.HasKey("HighScore"))
         {
             score = PlayerPrefs.GetInt("HighScore");
         }
+        if (PlayerPrefs.HasKey("Stars"))
+        {
+            stars = PlayerPrefs.GetInt("Stars");
+        }
+        StarSet();
     }
 
     void Update()
@@ -88,5 +97,11 @@ public class ScoreCounter : MonoBehaviour
         {
             scoreText.characterSize = 4.5f;
         }
+    }
+
+    public static void StarSet()
+    {
+        PlayerPrefs.SetInt("Stars", ScoreCounter.stars);
+        starTextStatic.text = stars.ToString();
     }
 }

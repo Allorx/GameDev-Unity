@@ -53,6 +53,7 @@ public class ObjectManager : MonoBehaviour
             if (isStar)
             {
                 ScoreCounter.stars++;
+                ScoreCounter.StarSet();
                 timeLimitControl.TimePause();
                 PostProcessController.StartPostProcess();
                 StarParticleController.StartStars(); ;

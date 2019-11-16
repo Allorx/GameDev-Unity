@@ -7,26 +7,38 @@ public class AchievementController : MonoBehaviour
     public int[] achievementScore;
     public int[] achievementStars;
 
-    public static void CheckAchievements(int score, int stars)
+    public static void CheckAchievements(int score)
     {
-        FindObjectOfType<AchievementController>().RunCheck(score, stars);
+        FindObjectOfType<AchievementController>().RunCheck(score);
     }
 
-    void RunCheck(int score, int stars)
+    public static void CheckStarUnlock(int characterNumber)
     {
-        StartCoroutine(AchievementCheck(score, stars));
+        FindObjectOfType<AchievementController>().RunStarCheck(characterNumber);
     }
 
-    IEnumerator AchievementCheck(int score, int stars)
+    void RunStarCheck(int charNum)
+    {
+        if (achievementStars[charNum] <= ScoreCounter.stars && !PlayerController.charUnlocked[charNum] && achievementStars[charNum] > 0)
+        {
+            Unlock(charNum);
+            ScoreCounter.stars -= achievementStars[charNum];
+            ScoreCounter.StarSet();
+        }
+        SaveUnlocks();
+    }
+
+    void RunCheck(int score)
+    {
+        StartCoroutine(AchievementCheck(score));
+    }
+
+    IEnumerator AchievementCheck(int score)
     {
         //Returns true if character can be unlocked
         for (int i = 0; i < PlayerController.characterList.Length; i++)
         {
             if (achievementScore[i] <= score && !PlayerController.charUnlocked[i] && achievementScore[i] > 0)
-            {
-                Unlock(i);
-            }
-            if (achievementStars[i] <= stars && !PlayerController.charUnlocked[i] && achievementStars[i] > 0)
             {
                 Unlock(i);
             }
@@ -37,8 +49,9 @@ public class AchievementController : MonoBehaviour
 
     void Unlock(int i)
     {
-        FindObjectOfType<PlayerController>().AchievementEffects();
         PlayerController.charUnlocked[i] = true;
+        FindObjectOfType<PlayerController>().AchievementEffects();
+        FindObjectOfType<PopulateGrid>().Repopulate();
     }
 
     void SaveUnlocks()

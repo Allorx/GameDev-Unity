@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        //ResetAllScores(); //WARNING RESETS SCORE DATA AND PREFERENCES !!!!!!!!!!!!!!!!!
         Time.timeScale = 1f;
     }
 
@@ -32,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        //ResetAllScores();//WARNING RESETS SCORE DATA AND PREFERENCES !!!!!!!!!!!!!!!!!
         CheckGameStart();
     }
 
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         TouchController.touchControllerActive = false;
         Time.timeScale = slowMotionScale;
         yield return new WaitForSecondsRealtime(slowMotionDuration);
-        AchievementController.CheckAchievements(ScoreCounter.score, ScoreCounter.stars);
+        AchievementController.CheckAchievements(ScoreCounter.score);
         FindObjectOfType<ButtonController>().RestartButton();
     }
 

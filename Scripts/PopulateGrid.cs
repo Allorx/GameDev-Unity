@@ -14,6 +14,11 @@ public class PopulateGrid : MonoBehaviour
         Populate();
     }
 
+    public void Repopulate()
+    {
+        Populate();
+    }
+
     void Populate()
     {
         GameObject newObj; // Create GameObject instance
@@ -35,6 +40,5 @@ public class PopulateGrid : MonoBehaviour
                 newObj.GetComponentInChildren<Image>().color = Color.black;
             }
         }
-
     }
 }
