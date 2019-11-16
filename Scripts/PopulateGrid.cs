@@ -22,7 +22,11 @@ public class PopulateGrid : MonoBehaviour
     void Populate()
     {
         GameObject newObj; // Create GameObject instance
-
+        GameObject[] GOS = GameObject.FindGameObjectsWithTag("Icon");
+        foreach (GameObject go in GOS)
+        {
+            Destroy(go);
+        }
         for (int i = 0; i < skins.Length; i++)
         {
             // Create new instances of our prefab until we've created as many as we specified

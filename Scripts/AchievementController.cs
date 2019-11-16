@@ -6,6 +6,7 @@ public class AchievementController : MonoBehaviour
 {
     public int[] achievementScore;
     public int[] achievementStars;
+    public GameObject scrollViewObject;
 
     public static void CheckAchievements(int score)
     {
@@ -51,11 +52,14 @@ public class AchievementController : MonoBehaviour
     {
         PlayerController.charUnlocked[i] = true;
         FindObjectOfType<PlayerController>().AchievementEffects();
-        FindObjectOfType<PopulateGrid>().Repopulate();
     }
 
     void SaveUnlocks()
     {
         FindObjectOfType<PlayerController>().SaveCharacterUnlock();
+        if (scrollViewObject.activeInHierarchy)
+        {
+            scrollViewObject.GetComponentInChildren<PopulateGrid>().Repopulate();
+        }
     }
 }
