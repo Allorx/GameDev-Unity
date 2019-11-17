@@ -35,6 +35,10 @@ public class PopulateGrid : MonoBehaviour
                 newObj = Instantiate(prefabSkins, transform);
                 newObj.GetComponentInChildren<SkinSelect>().characterNumber = i;
                 newObj.GetComponentInChildren<Image>().sprite = skins[i];
+                if (!PlayerController.newcharUnlock[i])
+                {
+                    newObj.GetComponentInChildren<SkinSelect>().DisableNewName();
+                }
             }
             else
             {
@@ -42,6 +46,7 @@ public class PopulateGrid : MonoBehaviour
                 newObj.GetComponentInChildren<SkinSelect>().characterNumber = i;
                 newObj.GetComponentInChildren<Image>().sprite = skins[i];
                 newObj.GetComponentInChildren<Image>().color = Color.black;
+                newObj.GetComponentInChildren<SkinSelect>().DisableNewName();
             }
         }
     }

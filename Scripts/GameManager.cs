@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        FindObjectOfType<PlayerController>().ResetAchievementEffects();
         if (gameEnded)
         {
             RestartLevel();

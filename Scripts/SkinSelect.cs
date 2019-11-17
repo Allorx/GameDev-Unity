@@ -7,6 +7,7 @@ public class SkinSelect : MonoBehaviour
 {
     public int characterNumber;
     static GameObject thisObject;
+    public GameObject newName;
 
     void Awake()
     {
@@ -18,10 +19,17 @@ public class SkinSelect : MonoBehaviour
         if (PlayerController.charUnlocked[characterNumber])
         {
             PlayerController.SelectCharacter(characterNumber);
+            PlayerController.newcharUnlock[characterNumber] = false;
+            DisableNewName();
         }
         else
         {
             AchievementController.CheckStarUnlock(characterNumber);
         }
+    }
+
+    public void DisableNewName()
+    {
+        newName.SetActive(false);
     }
 }

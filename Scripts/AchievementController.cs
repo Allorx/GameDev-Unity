@@ -51,6 +51,7 @@ public class AchievementController : MonoBehaviour
     void Unlock(int i)
     {
         PlayerController.charUnlocked[i] = true;
+        PlayerController.newcharUnlock[i] = true;
         FindObjectOfType<PlayerController>().AchievementEffects();
     }
 

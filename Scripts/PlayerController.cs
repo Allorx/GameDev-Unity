@@ -14,17 +14,23 @@ public class PlayerController : MonoBehaviour
     public static AnimatorOverrideController[] characterList;
     public static Sprite[] staticCharacterList;
     public static bool[] charUnlocked;
+    public static bool[] newcharUnlock;
+    public GameObject achievementObj;
+    public GameObject newName;
     static Animator animControl;
+    bool achievementEnabled = false;
     bool movementActivated = false;
     bool playerCanMove = true;
     bool flippedLeft;
 
     void Awake()
     {
+        ResetAchievementEffects();
         animControl = GetComponentInChildren<Animator>();
         characterList = character;
         staticCharacterList = characterSprite;
         charUnlocked = new bool[characterList.Length];
+        newcharUnlock = new bool[characterList.Length];
         LoadCharacterUnlock();
         LoadSkin();
     }
@@ -117,6 +123,7 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < character.Length; i++)
         {
             PlayerPrefs.SetInt("unlock" + i.ToString(), charUnlocked[i] ? 1 : 0);
+            PlayerPrefs.SetInt("firstUnlock" + i.ToString(), newcharUnlock[i] ? 1 : 0);
         }
     }
 
@@ -125,15 +132,29 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < character.Length; i++)
         {
             charUnlocked[i] = PlayerPrefs.GetInt("unlock" + i.ToString()) == 1 ? true : false;
+            newcharUnlock[i] = PlayerPrefs.GetInt("firstUnlock" + i.ToString()) == 1 ? true : false;
         }
         // unlock default character
         charUnlocked[0] = true;
+        // disable new name on default character
+        newcharUnlock[0] = false;
     }
 
     public void AchievementEffects()
     {
         //Say what achievement
         //Activate effects
+        achievementObj.SetActive(true);
+        newName.SetActive(true);
+        achievementEnabled = true;
+    }
 
+    public void ResetAchievementEffects()
+    {
+        if (achievementEnabled)
+        {
+            achievementEnabled = false;
+            achievementObj.SetActive(false);
+        }
     }
 }
