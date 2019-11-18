@@ -49,5 +49,6 @@ public class PopulateGrid : MonoBehaviour
                 newObj.GetComponentInChildren<SkinSelect>().DisableNewName();
             }
         }
+        ScrollFocus.FocusOnObject(GetComponentInChildren<RectTransform>());
     }
 }

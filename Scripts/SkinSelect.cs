@@ -8,10 +8,23 @@ public class SkinSelect : MonoBehaviour
     public int characterNumber;
     static GameObject thisObject;
     public GameObject newName;
+    public GameObject highlight;
 
     void Awake()
     {
         thisObject = gameObject;
+    }
+
+    void Update()
+    {
+        if (characterNumber == PlayerPrefs.GetInt("CharacterNumber"))
+        {
+            highlight.SetActive(true);
+        }
+        else
+        {
+            highlight.SetActive(false);
+        }
     }
 
     public void CharacterSelect()

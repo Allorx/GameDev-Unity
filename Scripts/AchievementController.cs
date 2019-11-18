@@ -25,8 +25,9 @@ public class AchievementController : MonoBehaviour
             Unlock(charNum);
             ScoreCounter.stars -= achievementStars[charNum];
             ScoreCounter.StarSet();
+            SaveUnlocks();
         }
-        SaveUnlocks();
+
     }
 
     void RunCheck(int score)
