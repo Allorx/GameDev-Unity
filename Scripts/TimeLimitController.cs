@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TimeLimitController : MonoBehaviour
 {
+    public GameObject starParticles;
     public Color starBar;
     public Image healthBar;
     public float timeCounter = 3f;
@@ -47,6 +48,7 @@ public class TimeLimitController : MonoBehaviour
 
     public void TimePause()
     {
+        starParticles.SetActive(true);
         healthBar.color = starBar;
         StopTimer();
         waitTimerRoutine = StartCoroutine(WaitTime());
@@ -58,6 +60,7 @@ public class TimeLimitController : MonoBehaviour
         timerRoutine = StartCoroutine(Timer());
         PostProcessController.EndPostProcess();
         healthBar.color = originalColour;
+        starParticles.SetActive(false);
     }
 
     IEnumerator Timer()
