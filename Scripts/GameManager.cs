@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerController.DestroyPlayer();
         PostProcessController.EndPostProcess();
+        CameraShake.shakeDuration = 2f;
         FindObjectOfType<TimeLimitController>().StopTimer();
 
         gameEnded = true;

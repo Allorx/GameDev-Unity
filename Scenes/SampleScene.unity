@@ -2053,6 +2053,7 @@ GameObject:
   - component: {fileID: 1220131006}
   - component: {fileID: 1220131005}
   - component: {fileID: 1220131004}
+  - component: {fileID: 1220131008}
   - component: {fileID: 1220131007}
   - component: {fileID: 1220131003}
   m_Layer: 0
@@ -2175,6 +2176,22 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1220131008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220131002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a59a18084b8a44d98e1248e6fd42ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 1220131006}
+  shakeAmount: 10
+  decreaseFactor: 1
+  decreaseShakeAmount: 0.1
 --- !u!1 &1285437099
 GameObject:
   m_ObjectHideFlags: 0
@@ -3028,7 +3045,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809995724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 439505920}
