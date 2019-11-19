@@ -25,6 +25,5 @@ public class PostProcessController : MonoBehaviour
     {
         postProcessObj.transform.position = defaultPos;
     }
-
 }
 

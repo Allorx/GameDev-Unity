@@ -9,6 +9,7 @@ public class SkinSelect : MonoBehaviour
     static GameObject thisObject;
     public GameObject newName;
     public GameObject highlight;
+    public GameObject highlightRed;
 
     void Awake()
     {
@@ -37,8 +38,20 @@ public class SkinSelect : MonoBehaviour
         }
         else
         {
-            AchievementController.CheckStarUnlock(characterNumber);
+            if (!AchievementController.CheckStarUnlock(characterNumber))
+            {
+                StartCoroutine(EffectDisabled());
+            }
         }
+    }
+
+    IEnumerator EffectDisabled()
+    {
+        highlightRed.GetComponentInChildren<Image>().color = Color.red;
+        highlightRed.SetActive(true);
+        yield return new WaitForSecondsRealtime(0.1f);
+        highlightRed.GetComponentInChildren<Image>().color = Color.white;
+        highlightRed.SetActive(false);
     }
 
     public void DisableNewName()

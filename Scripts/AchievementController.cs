@@ -13,12 +13,20 @@ public class AchievementController : MonoBehaviour
         FindObjectOfType<AchievementController>().RunCheck(score);
     }
 
-    public static void CheckStarUnlock(int characterNumber)
+    public static bool CheckStarUnlock(int characterNumber)
     {
-        FindObjectOfType<AchievementController>().RunStarCheck(characterNumber);
+        if (FindObjectOfType<AchievementController>().RunStarCheck(characterNumber))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
-    void RunStarCheck(int charNum)
+    bool RunStarCheck(int charNum)
     {
         if (achievementStars[charNum] <= ScoreCounter.stars && !PlayerController.charUnlocked[charNum] && achievementStars[charNum] > 0)
         {
@@ -26,8 +34,12 @@ public class AchievementController : MonoBehaviour
             ScoreCounter.stars -= achievementStars[charNum];
             ScoreCounter.StarSet();
             SaveUnlocks();
+            return true;
         }
-
+        else
+        {
+            return false;
+        }
     }
 
     void RunCheck(int score)

@@ -56,7 +56,7 @@ public class ObjectManager : MonoBehaviour
                 ScoreCounter.StarSet();
                 timeLimitControl.TimePause();
                 PostProcessController.StartPostProcess();
-                StarParticleController.StartStars(); ;
+                //StarParticleController.StartStars(); ;
                 gameObject.SetActive(false);
             }
             else
