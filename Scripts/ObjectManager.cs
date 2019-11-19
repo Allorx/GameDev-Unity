@@ -10,6 +10,7 @@ public class ObjectManager : MonoBehaviour
     public bool isGoodBlock = false;
     public bool isBadBlock = false;
     public bool isStar = false;
+    public bool isCookie = false;
     TimeLimitController timeLimitControl;
     bool canBeDestroyed = true;
     int randomNumber;
@@ -56,6 +57,10 @@ public class ObjectManager : MonoBehaviour
                 timeLimitControl.TimePause();
                 PostProcessController.StartPostProcess();
                 //StarParticleController.StartStars(); ;
+                gameObject.SetActive(false);
+            }
+            else if (isCookie)
+            {
                 gameObject.SetActive(false);
             }
             else
