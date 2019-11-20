@@ -31,5 +31,6 @@ public class ButtonController : MonoBehaviour
     public void RestartButton()
     {
         button[0].SetActive(true);
+        button[2].SetActive(true);
     }
 }
