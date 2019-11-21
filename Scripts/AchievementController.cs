@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AchievementController : MonoBehaviour
 {
     public int[] achievementScore;
     public int[] achievementStars;
+    public Sprite[] achievementImages;
     public GameObject scrollViewObject;
 
     public static void CheckAchievements(int score)
@@ -65,7 +67,7 @@ public class AchievementController : MonoBehaviour
     {
         PlayerController.charUnlocked[i] = true;
         PlayerController.newcharUnlock[i] = true;
-        FindObjectOfType<PlayerController>().AchievementEffects();
+        FindObjectOfType<PlayerController>().AchievementEffects("UnlockedCharacter");
     }
 
     void SaveUnlocks()

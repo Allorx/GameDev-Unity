@@ -31,6 +31,13 @@ public class ButtonController : MonoBehaviour
     public void RestartButton()
     {
         button[0].SetActive(true);
-        button[2].SetActive(true);
+        if (RewardedAdsButton.buttonCanBeEnabled)
+        {
+            button[2].SetActive(true);
+        }
+        else
+        {
+            button[2].SetActive(false);
+        }
     }
 }

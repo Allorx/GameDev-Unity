@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 225456915}
   - component: {fileID: 225456917}
   - component: {fileID: 225456916}
+  - component: {fileID: 225456918}
   m_Layer: 5
   m_Name: Achievement
   m_TagString: Untagged
@@ -414,6 +415,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 225456914}
   m_CullTransparentMesh: 0
+--- !u!114 &225456918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225456914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e323ae7284d1473895ba35a7d1b48e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisImage: {fileID: 225456916}
+  unlockImage: {fileID: 2399276672480804448, guid: 265e725fa56ea47f5991ff630f1f7d4f,
+    type: 3}
+  rewardImage: {fileID: -1241946091501096367, guid: d0e92d968bbdd4dd58fc25fd06531e9f,
+    type: 3}
 --- !u!1 &283391359
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +805,7 @@ GameObject:
   - component: {fileID: 439505919}
   - component: {fileID: 439505918}
   - component: {fileID: 439505917}
+  - component: {fileID: 439505922}
   - component: {fileID: 439505921}
   m_Layer: 5
   m_Name: Canvas
@@ -901,6 +920,20 @@ MonoBehaviour:
   tutorial: {fileID: 2106677121}
   skinUI: {fileID: 1829871835}
   newName: {fileID: 573981955}
+--- !u!114 &439505922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439505916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a26ca9e8e27a489da3a2ce318c0ad60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievementDisplay: {fileID: 225456914}
+  myPlacementId: rewardedVideo
 --- !u!1 &457275983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,7 +1953,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1110166259}
   - component: {fileID: 1110166263}
-  - component: {fileID: 1110166264}
   - component: {fileID: 1110166262}
   - component: {fileID: 1110166261}
   - component: {fileID: 1110166260}
@@ -2009,10 +2041,21 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1208938808}
+  m_TargetGraphic: {fileID: 1110166262}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 439505922}
+        m_MethodName: ShowAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1110166262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2026,8 +2069,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33333334, g: 0.52156866, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2050,19 +2093,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110166258}
   m_CullTransparentMesh: 0
---- !u!114 &1110166264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110166258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a26ca9e8e27a489da3a2ce318c0ad60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPlacementId: rewardedVideo
 --- !u!1 &1147025617
 GameObject:
   m_ObjectHideFlags: 0

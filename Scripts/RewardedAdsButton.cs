@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 
-[RequireComponent(typeof(Button))]
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
 {
 
@@ -12,27 +11,25 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
     private string gameId = "3369707";
 #endif
 
-    Button myButton;
+    public static bool buttonCanBeEnabled;
     public string myPlacementId = "rewardedVideo";
 
     void Start()
     {
-        myButton = GetComponent<Button>();
-
         // Set interactivity to be dependent on the Placement’s status:
-        myButton.interactable = Advertisement.IsReady(myPlacementId);
-
-        // Map the ShowRewardedVideo function to the button’s click listener:
-        if (myButton) myButton.onClick.AddListener(ShowRewardedVideo);
+        if (Advertisement.IsReady(myPlacementId))
+        {
+            buttonCanBeEnabled = true;
+        }
 
         // Initialize the Ads listener and service:
         Advertisement.AddListener(this);
         Advertisement.Initialize(gameId, true);
     }
 
-    // Implement a function for showing a rewarded video ad:
-    void ShowRewardedVideo()
+    public void ShowAd()
     {
+        Debug.Log("Showed");
         Advertisement.Show(myPlacementId);
     }
 
@@ -42,7 +39,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
         // If the ready Placement is rewarded, activate the button: 
         if (placementId == myPlacementId)
         {
-            myButton.interactable = true;
+            buttonCanBeEnabled = true;
         }
     }
 
@@ -51,6 +48,9 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
         // Define conditional logic for each ad completion status:
         if (showResult == ShowResult.Finished)
         {
+            RewardUser();
+            buttonCanBeEnabled = false;
+            FindObjectOfType<ButtonController>().RestartButton();
             // Reward the user for watching the ad to completion.
         }
         else if (showResult == ShowResult.Skipped)
@@ -61,7 +61,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
         {
             Debug.LogWarning("The ad did not finish due to an error.");
         }
-        //Show coins gained and open box - also do this once a day for free (no ads)!!!!!!!!!! Reload to start and show what you got!!!!!
     }
 
     public void OnUnityAdsDidError(string message)
@@ -72,5 +71,12 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
     public void OnUnityAdsDidStart(string placementId)
     {
         // Optional actions to take when the end-users triggers an ad.
+    }
+
+    public static void RewardUser()
+    {
+        FindObjectOfType<PlayerController>().AchievementEffects("Reward");
+        ScoreCounter.stars += 5;
+        ScoreCounter.StarSet();
     }
 }

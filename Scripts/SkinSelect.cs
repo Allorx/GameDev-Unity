@@ -7,6 +7,7 @@ public class SkinSelect : MonoBehaviour
 {
     public int characterNumber;
     static GameObject thisObject;
+    public GameObject achievementImage;
     public GameObject newName;
     public GameObject highlight;
     public GameObject highlightRed;
@@ -14,6 +15,15 @@ public class SkinSelect : MonoBehaviour
     void Awake()
     {
         thisObject = gameObject;
+        if (PlayerController.charUnlocked[characterNumber])
+        {
+            achievementImage.SetActive(false);
+        }
+        else
+        {
+            achievementImage.SetActive(true);
+            achievementImage.GetComponentInChildren<Image>().sprite = FindObjectOfType<AchievementController>().achievementImages[characterNumber];
+        }
     }
 
     void Update()
@@ -50,7 +60,6 @@ public class SkinSelect : MonoBehaviour
         highlightRed.GetComponentInChildren<Image>().color = Color.red;
         highlightRed.SetActive(true);
         yield return new WaitForSecondsRealtime(0.1f);
-        highlightRed.GetComponentInChildren<Image>().color = Color.white;
         highlightRed.SetActive(false);
     }
 

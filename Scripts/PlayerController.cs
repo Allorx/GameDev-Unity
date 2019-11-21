@@ -140,11 +140,12 @@ public class PlayerController : MonoBehaviour
         newcharUnlock[0] = false;
     }
 
-    public void AchievementEffects()
+    public void AchievementEffects(string type)
     {
         //Say what achievement
         //Activate effects
         achievementObj.SetActive(true);
+        achievementObj.GetComponentInChildren<AchievementDisplay>().Display(type);
         newName.SetActive(true);
         achievementEnabled = true;
     }
