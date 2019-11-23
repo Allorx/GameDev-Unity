@@ -17,6 +17,7 @@ public class ScoreCounter : MonoBehaviour
     bool resetScoreOnce = true;
     int flashTimes = 5;
     Color originalScoreColour;
+    bool highscoreActivated;
 
     void Awake()
     {
@@ -80,9 +81,10 @@ public class ScoreCounter : MonoBehaviour
 
     void HighScoreCheck()
     {
-        if (ScoreCounter.score > PlayerPrefs.GetInt("HighScore") && firstSave)
+        if (!highscoreActivated && ScoreCounter.score > PlayerPrefs.GetInt("HighScore") && firstSave)
         {
             // Make it flash a few times and disappear
+            highscoreActivated = true;
             highscore.SetActive(true);
             StartCoroutine(HighscoreEffects());
             PlayerPrefs.SetInt("HighScore", ScoreCounter.score);
