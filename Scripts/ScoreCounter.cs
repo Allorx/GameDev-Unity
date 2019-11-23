@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class ScoreCounter : MonoBehaviour
 {
     public TextMesh scoreText;
-    public TextMesh starText;
-    static TextMesh starTextStatic;
-    public static int stars;
+    public TextMesh cookieText;
+    static TextMesh cookieTextStatic;
+    public static int cookie;
     public static int score = 0;
     public static int lastScore = 0;
     bool firstSave = false;
@@ -16,7 +16,7 @@ public class ScoreCounter : MonoBehaviour
 
     void Awake()
     {
-        starTextStatic = starText;
+        cookieTextStatic = cookieText;
         ButtonController.startScore = false;
         score = 0;
         lastScore = 0;
@@ -34,11 +34,11 @@ public class ScoreCounter : MonoBehaviour
         {
             score = PlayerPrefs.GetInt("HighScore");
         }
-        if (PlayerPrefs.HasKey("Stars"))
+        if (PlayerPrefs.HasKey("Cookie"))
         {
-            stars = PlayerPrefs.GetInt("Stars");
+            cookie = PlayerPrefs.GetInt("Cookie");
         }
-        StarSet();
+        CookieSet();
     }
 
     void Update()
@@ -99,9 +99,9 @@ public class ScoreCounter : MonoBehaviour
         }
     }
 
-    public static void StarSet()
+    public static void CookieSet()
     {
-        PlayerPrefs.SetInt("Stars", ScoreCounter.stars);
-        starTextStatic.text = stars.ToString();
+        PlayerPrefs.SetInt("Cookie", ScoreCounter.cookie);
+        cookieTextStatic.text = cookie.ToString();
     }
 }

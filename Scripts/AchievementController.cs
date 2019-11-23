@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class AchievementController : MonoBehaviour
 {
     public int[] achievementScore;
-    public int[] achievementStars;
-    public Sprite[] achievementImages;
+    public int[] achievementCookie;
     public GameObject scrollViewObject;
 
     public static void CheckAchievements(int score)
@@ -30,11 +29,11 @@ public class AchievementController : MonoBehaviour
 
     bool RunStarCheck(int charNum)
     {
-        if (achievementStars[charNum] <= ScoreCounter.stars && !PlayerController.charUnlocked[charNum] && achievementStars[charNum] > 0)
+        if (achievementCookie[charNum] <= ScoreCounter.cookie && !PlayerController.charUnlocked[charNum] && achievementCookie[charNum] > 0)
         {
             Unlock(charNum);
-            ScoreCounter.stars -= achievementStars[charNum];
-            ScoreCounter.StarSet();
+            ScoreCounter.cookie -= achievementCookie[charNum];
+            ScoreCounter.CookieSet();
             SaveUnlocks();
             return true;
         }

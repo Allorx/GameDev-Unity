@@ -48,14 +48,14 @@ public class TimeLimitController : MonoBehaviour
 
     public void TimePause()
     {
-        starParticles.SetActive(true);
-        healthBar.color = starBar;
         StopTimer();
         waitTimerRoutine = StartCoroutine(WaitTime());
     }
 
     IEnumerator WaitTime()
     {
+        starParticles.SetActive(true);
+        healthBar.color = starBar;
         yield return new WaitForSecondsRealtime(starWaitTime);
         timerRoutine = StartCoroutine(Timer());
         PostProcessController.EndPostProcess();
@@ -82,6 +82,7 @@ public class TimeLimitController : MonoBehaviour
         if (waitTimerRoutine != null)
         {
             StopCoroutine(waitTimerRoutine);
+            healthBar.color = originalColour;
         }
     }
 }

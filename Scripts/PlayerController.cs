@@ -17,11 +17,15 @@ public class PlayerController : MonoBehaviour
     public static bool[] newcharUnlock;
     public GameObject achievementObj;
     public GameObject newName;
+    public Animator heartAnim;
     static Animator animControl;
     bool achievementEnabled = false;
     bool movementActivated = false;
     bool playerCanMove = true;
     bool flippedLeft;
+    Vector3 scaleMove = new Vector3(-0.05f, 0.05f, 0f);
+    Vector3 scaleIncrease = new Vector3(0.1f, 0.1f, 0.1f);
+    Vector3 maxScale = new Vector3(2f, 2f, 2f);
 
     void Awake()
     {
@@ -66,6 +70,12 @@ public class PlayerController : MonoBehaviour
         if (playerCanMove)
         {
             Flip();
+            //Increase size over score
+            if (ScoreCounter.score > 0 && playerTransform.localScale.x < maxScale.x && ScoreCounter.score % 50 == 0)
+            {
+                playerTransform.localScale += scaleIncrease;
+                playerTransform.position += scaleMove;
+            }
         }
         else if (!movementActivated && GameManager.gamePlay)
         {
@@ -157,5 +167,10 @@ public class PlayerController : MonoBehaviour
             achievementEnabled = false;
             achievementObj.SetActive(false);
         }
+    }
+
+    public void HeartAnimation()
+    {
+        heartAnim.Play("heart", -1, 0f);
     }
 }

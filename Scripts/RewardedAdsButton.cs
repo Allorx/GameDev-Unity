@@ -76,7 +76,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
     public static void RewardUser()
     {
         FindObjectOfType<PlayerController>().AchievementEffects("Reward");
-        ScoreCounter.stars += 5;
-        ScoreCounter.StarSet();
+        ScoreCounter.cookie += 5;
+        ScoreCounter.CookieSet();
     }
 }

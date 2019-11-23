@@ -7,6 +7,7 @@ public class BlockSpawn : MonoBehaviour
     public string[] objectTagBad;
     public string[] objectTagGood;
     public string[] objectTagStar;
+    public string[] objectTagCookie;
     public ObjectPooler objectPooler;
     public int maxNumGood = 1;
     public int initialAmount = 11;
@@ -47,6 +48,10 @@ public class BlockSpawn : MonoBehaviour
                 if (ScoreCounter.score % 20 == 0)
                 {
                     Spawn(objectTagStar[randNum], transform.position);
+                }
+                if (ScoreCounter.score % 45 == 0 && ScoreCounter.score % 20 != 0)
+                {
+                    Spawn(objectTagCookie[randNum], transform.position);
                 }
                 sideToSpawn = SideSelection(splitChance);
                 randNum = Random.Range(0, objectTagGood.Length);
@@ -109,6 +114,16 @@ public class BlockSpawn : MonoBehaviour
                 }
                 break;
             case "Star":
+                if (sideToSpawn)
+                {
+                    objectPooler.SpawnFromPool(block, position - starOffset, Quaternion.Euler(0, 180, 0));
+                }
+                else
+                {
+                    objectPooler.SpawnFromPool(block, position + starOffset, Quaternion.identity);
+                }
+                break;
+            case "Cookie":
                 if (sideToSpawn)
                 {
                     objectPooler.SpawnFromPool(block, position - starOffset, Quaternion.Euler(0, 180, 0));

@@ -38,7 +38,7 @@ public class ObjectManager : MonoBehaviour
     {
         if (colliderInfo.gameObject.tag == "DestroyVolume" && canBeDestroyed)
         {
-            if (isStar)
+            if (isStar || isCookie)
             {
                 gameObject.SetActive(false);
             }
@@ -52,15 +52,16 @@ public class ObjectManager : MonoBehaviour
         {
             if (isStar)
             {
-                ScoreCounter.stars++;
-                ScoreCounter.StarSet();
                 timeLimitControl.TimePause();
                 PostProcessController.StartPostProcess();
-                //StarParticleController.StartStars(); ;
+                //StarParticleController.StartStars();
                 gameObject.SetActive(false);
             }
             else if (isCookie)
             {
+                FindObjectOfType<PlayerController>().HeartAnimation();
+                ScoreCounter.cookie++;
+                ScoreCounter.CookieSet();
                 gameObject.SetActive(false);
             }
             else
