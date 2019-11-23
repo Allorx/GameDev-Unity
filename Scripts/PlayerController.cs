@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     bool movementActivated = false;
     bool playerCanMove = true;
     bool flippedLeft;
-    Vector3 scaleMove = new Vector3(-0.05f, 0.05f, 0f);
+    Vector3 scaleMove = new Vector3(-0.1f, 0.1f, 1f);
     Vector3 scaleIncrease = new Vector3(0.1f, 0.1f, 0.1f);
     Vector3 maxScale = new Vector3(2f, 2f, 2f);
 
@@ -69,13 +69,15 @@ public class PlayerController : MonoBehaviour
     {
         if (playerCanMove)
         {
-            Flip();
             //Increase size over score
-            if (ScoreCounter.score > 0 && playerTransform.localScale.x < maxScale.x && ScoreCounter.score % 50 == 0)
+            if (TouchController.Tapped && ScoreCounter.score > 0 && playerTransform.localScale.x < maxScale.x && ScoreCounter.score % 50 == 0)
             {
                 playerTransform.localScale += scaleIncrease;
-                playerTransform.position += scaleMove;
+                playerTransform.localPosition += scaleMove;
+                deathTransform.y -= scaleMove.y;
             }
+            //Flip sides
+            Flip();
         }
         else if (!movementActivated && GameManager.gamePlay)
         {
