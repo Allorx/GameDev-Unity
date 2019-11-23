@@ -69,13 +69,6 @@ public class PlayerController : MonoBehaviour
     {
         if (playerCanMove)
         {
-            //Increase size over score
-            if (TouchController.Tapped && ScoreCounter.score > 0 && playerTransform.localScale.x < maxScale.x && ScoreCounter.score % 50 == 0)
-            {
-                playerTransform.localScale += scaleIncrease;
-                playerTransform.localPosition += scaleMove;
-                deathTransform.y -= scaleMove.y;
-            }
             //Flip sides
             Flip();
         }
@@ -95,12 +88,26 @@ public class PlayerController : MonoBehaviour
         }
         if (TouchController.TappedLeft && !flippedLeft)
         {
+            //Increase size over score
+            if (ScoreCounter.score > 0 && playerTransform.localScale.x < maxScale.x && ScoreCounter.score % 50 == 0)
+            {
+                playerTransform.localScale += scaleIncrease;
+                playerTransform.localPosition -= scaleMove;
+                deathTransform.y -= scaleMove.y;
+            }
             transform.RotateAround(playerFlipPoint.transform.position, Vector3.up, 180);
             flippedLeft = true;
             EatAnim();
         }
         else if (TouchController.TappedRight && flippedLeft)
         {
+            //Increase size over score
+            if (ScoreCounter.score > 0 && playerTransform.localScale.x < maxScale.x && ScoreCounter.score % 50 == 0)
+            {
+                playerTransform.localScale += scaleIncrease;
+                playerTransform.localPosition += scaleMove;
+                deathTransform.y -= scaleMove.y;
+            }
             transform.RotateAround(playerFlipPoint.transform.position, Vector3.up, 180);
             flippedLeft = false;
             EatAnim();
