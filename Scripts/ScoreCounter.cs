@@ -8,11 +8,15 @@ public class ScoreCounter : MonoBehaviour
     public TextMesh scoreText;
     public TextMesh cookieText;
     static TextMesh cookieTextStatic;
+    public GameObject highscore;
+    public Color highscoreScoreColour;
     public static int cookie;
     public static int score = 0;
     public static int lastScore = 0;
     bool firstSave = false;
     bool resetScoreOnce = true;
+    int flashTimes = 5;
+    Color originalScoreColour;
 
     void Awake()
     {
@@ -21,6 +25,7 @@ public class ScoreCounter : MonoBehaviour
         score = 0;
         lastScore = 0;
         scoreText.characterSize = 5f;
+        originalScoreColour = scoreText.color;
 
         if (PlayerPrefs.HasKey("FirstSave"))
         {
@@ -77,7 +82,9 @@ public class ScoreCounter : MonoBehaviour
     {
         if (ScoreCounter.score > PlayerPrefs.GetInt("HighScore") && firstSave)
         {
-            // Make it flash a few times and disappear - maybe change graphics and make fire different colour
+            // Make it flash a few times and disappear
+            highscore.SetActive(true);
+            StartCoroutine(HighscoreEffects());
             PlayerPrefs.SetInt("HighScore", ScoreCounter.score);
         }
         else if (!GameManager.gamePlay)
@@ -85,6 +92,19 @@ public class ScoreCounter : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", ScoreCounter.score);
             PlayerPrefs.SetInt("FirstSave", 1);
         }
+    }
+
+    IEnumerator HighscoreEffects()
+    {
+        scoreText.color = Color.white;
+        yield return new WaitForSecondsRealtime(0.1f);
+        while (flashTimes > 0)
+        {
+            scoreText.color = originalScoreColour;
+            flashTimes -= 1;
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+        scoreText.color = highscoreScoreColour;
     }
 
     void DecreasecharacterSize()
