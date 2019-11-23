@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
     bool movementActivated = false;
     bool playerCanMove = true;
     bool flippedLeft;
-    Vector3 scaleMove = new Vector3(-0.1f, 0.1f, 1f);
+    Vector3 scaleLeft = new Vector3(-0.05f, 0.05f, 0f);
+    Vector3 scaleRight = new Vector3(0.05f, 0.05f, 0f);
     Vector3 scaleIncrease = new Vector3(0.1f, 0.1f, 0.1f);
     Vector3 maxScale = new Vector3(2f, 2f, 2f);
 
@@ -86,31 +87,51 @@ public class PlayerController : MonoBehaviour
             ScoreCounter.score++;
             EatAnim();
         }
-        if (TouchController.TappedLeft && !flippedLeft)
+        if (TouchController.TappedLeft)
         {
-            //Increase size over score
-            if (ScoreCounter.score > 0 && playerTransform.localScale.x < maxScale.x && ScoreCounter.score % 50 == 0)
+            if (!flippedLeft)
             {
-                playerTransform.localScale += scaleIncrease;
-                playerTransform.localPosition -= scaleMove;
-                deathTransform.y -= scaleMove.y;
+                ScaleMove(true);
+                transform.RotateAround(playerFlipPoint.transform.position, Vector3.up, 180);
+                flippedLeft = true;
+                EatAnim();
             }
-            transform.RotateAround(playerFlipPoint.transform.position, Vector3.up, 180);
-            flippedLeft = true;
-            EatAnim();
+            else
+            {
+                ScaleMove(false);
+            }
         }
-        else if (TouchController.TappedRight && flippedLeft)
+        else if (TouchController.TappedRight)
         {
-            //Increase size over score
-            if (ScoreCounter.score > 0 && playerTransform.localScale.x < maxScale.x && ScoreCounter.score % 50 == 0)
+            if (flippedLeft)
             {
-                playerTransform.localScale += scaleIncrease;
-                playerTransform.localPosition += scaleMove;
-                deathTransform.y -= scaleMove.y;
+                ScaleMove(false);
+                transform.RotateAround(playerFlipPoint.transform.position, Vector3.up, 180);
+                flippedLeft = false;
+                EatAnim();
             }
-            transform.RotateAround(playerFlipPoint.transform.position, Vector3.up, 180);
-            flippedLeft = false;
-            EatAnim();
+            else
+            {
+                ScaleMove(true);
+            }
+        }
+    }
+
+    void ScaleMove(bool Right)
+    {
+        if (ScoreCounter.score > 0 && playerTransform.localScale.x < maxScale.x && ScoreCounter.score % 50 == 0)
+        {
+            playerTransform.localScale += scaleIncrease;
+            if (Right)
+            {
+                playerTransform.localPosition += scaleRight;
+                deathTransform.y -= scaleRight.y;
+            }
+            else
+            {
+                playerTransform.localPosition += scaleLeft;
+                deathTransform.y -= scaleLeft.y;
+            }
         }
     }
 
