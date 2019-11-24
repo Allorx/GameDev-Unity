@@ -16,15 +16,9 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
 
     void Start()
     {
-        // Set interactivity to be dependent on the Placement’s status:
-        if (Advertisement.IsReady(myPlacementId))
-        {
-            buttonCanBeEnabled = true;
-        }
-
         // Initialize the Ads listener and service:
         Advertisement.AddListener(this);
-        Advertisement.Initialize(gameId, true);
+        Advertisement.Initialize(gameId);
     }
 
     public void ShowAd()

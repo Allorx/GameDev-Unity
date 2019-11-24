@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class AchievementDisplay : MonoBehaviour
 {
-    public Image thisImage;
-    public Sprite unlockImage;
-    public Sprite rewardImage;
+    public Animator thisAnimator;
 
     public void Display(string type)
     {
         if (type == "UnlockedCharacter")
         {
-            thisImage.sprite = unlockImage;
+            //run animation unlock
+            thisAnimator.Play("unlock", -1, 0f);
         }
         else if (type == "Reward")
         {
-            thisImage.sprite = rewardImage;
+            //run animation reward
+            thisAnimator.Play("reward", -1, 0f);
         }
     }
 }

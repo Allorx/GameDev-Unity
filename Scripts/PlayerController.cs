@@ -91,29 +91,21 @@ public class PlayerController : MonoBehaviour
         {
             if (!flippedLeft)
             {
-                ScaleMove(true);
                 transform.RotateAround(playerFlipPoint.transform.position, Vector3.up, 180);
                 flippedLeft = true;
                 EatAnim();
             }
-            else
-            {
-                ScaleMove(false);
-            }
+            ScaleMove(false);
         }
         else if (TouchController.TappedRight)
         {
             if (flippedLeft)
             {
-                ScaleMove(false);
                 transform.RotateAround(playerFlipPoint.transform.position, Vector3.up, 180);
                 flippedLeft = false;
                 EatAnim();
             }
-            else
-            {
-                ScaleMove(true);
-            }
+            ScaleMove(true);
         }
     }
 

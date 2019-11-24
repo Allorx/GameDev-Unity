@@ -43,8 +43,8 @@ public class ScoreCounter : MonoBehaviour
         if (PlayerPrefs.HasKey("Cookie"))
         {
             cookie = PlayerPrefs.GetInt("Cookie");
+            CookieSet();
         }
-        CookieSet();
     }
 
     void Update()
