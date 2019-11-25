@@ -52,6 +52,14 @@ public class TimeLimitController : MonoBehaviour
         waitTimerRoutine = StartCoroutine(WaitTime());
     }
 
+    IEnumerator FlashHealth()
+    {
+        healthBar.color = Color.red;
+        timeCounter = 3;
+        yield return new WaitForSecondsRealtime(0.1f);
+        timeCounter = 0;
+    }
+
     IEnumerator WaitTime()
     {
         starParticles.SetActive(true);
@@ -72,6 +80,7 @@ public class TimeLimitController : MonoBehaviour
                 timeCounter -= Time.deltaTime;
                 yield return null;
             }
+            //StartCoroutine(FlashHealth());
             FindObjectOfType<GameManager>().EndGame();
         }
     }

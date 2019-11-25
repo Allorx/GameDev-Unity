@@ -23,6 +23,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
 
     public void ShowAd()
     {
+        FindObjectOfType<AudioController>().PlayAudio(0);
         Debug.Log("Showed");
         Advertisement.Show(myPlacementId);
     }

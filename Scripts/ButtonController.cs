@@ -10,28 +10,36 @@ public class ButtonController : MonoBehaviour
     public GameObject newName;
     public static bool startScore = false;
 
-    void Start(){
-        for(int i = 0; i < PlayerController.newcharUnlock.Length; i++){
-            if(PlayerController.newcharUnlock[i]){
+    void Start()
+    {
+        for (int i = 0; i < PlayerController.newcharUnlock.Length; i++)
+        {
+            if (PlayerController.newcharUnlock[i])
+            {
                 newName.SetActive(true);
                 break;
             }
         }
     }
 
-    public void HideButton()
+    public void HideButton(bool restart)
     {
-        tutorial.SetActive(true);
-        skinUI.SetActive(false);
-        startScore = true;
-        for (int i = 0; i < button.Length; i++)
+        ClickAudio();
+        if (!restart)
         {
-            button[i].SetActive(false);
+            tutorial.SetActive(true);
+            skinUI.SetActive(false);
+            startScore = true;
+            for (int i = 0; i < button.Length; i++)
+            {
+                button[i].SetActive(false);
+            }
         }
     }
 
     public void OpenSkinMenu()
     {
+        ClickAudio();
         skinUI.SetActive(true);
         button[1].SetActive(false);
     }
@@ -47,5 +55,10 @@ public class ButtonController : MonoBehaviour
         {
             button[2].SetActive(false);
         }
+    }
+
+    void ClickAudio()
+    {
+        FindObjectOfType<AudioController>().PlayAudio(0);
     }
 }

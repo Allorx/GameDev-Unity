@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+
         FindObjectOfType<PlayerController>().ResetAchievementEffects();
         if (gameEnded)
         {
@@ -68,6 +69,13 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        FindObjectOfType<ButtonController>().HideButton(true);
+        StartCoroutine(RebuildLevel());
+    }
+
+    IEnumerator RebuildLevel()
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -75,7 +83,7 @@ public class GameManager : MonoBehaviour
     {
         if (!withButtons)
         {
-            FindObjectOfType<ButtonController>().HideButton();
+            FindObjectOfType<ButtonController>().HideButton(false);
         }
 
         yield return new WaitForSecondsRealtime(0.5f);
