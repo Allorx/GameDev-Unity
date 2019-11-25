@@ -11,11 +11,13 @@ public class AchievementDisplay : MonoBehaviour
     {
         if (type == "UnlockedCharacter")
         {
+            Debug.Log(type);
             //run animation unlock
             thisAnimator.Play("unlock", -1, 0f);
         }
         else if (type == "Reward")
         {
+            Debug.Log(type);
             //run animation reward
             thisAnimator.Play("reward", -1, 0f);
         }
