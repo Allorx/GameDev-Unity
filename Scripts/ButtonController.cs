@@ -10,6 +10,15 @@ public class ButtonController : MonoBehaviour
     public GameObject newName;
     public static bool startScore = false;
 
+    void Start(){
+        for(int i = 0; i < PlayerController.newcharUnlock.Length; i++){
+            if(PlayerController.newcharUnlock[i]){
+                newName.SetActive(true);
+                break;
+            }
+        }
+    }
+
     public void HideButton()
     {
         tutorial.SetActive(true);
@@ -23,7 +32,6 @@ public class ButtonController : MonoBehaviour
 
     public void OpenSkinMenu()
     {
-        newName.SetActive(false);
         skinUI.SetActive(true);
         button[1].SetActive(false);
     }
