@@ -8,6 +8,7 @@ public class SkinSelect : MonoBehaviour
     public int characterNumber;
     static GameObject thisObject;
     public GameObject achievement;
+    public GameObject questionMark;
     public GameObject newName;
     public GameObject highlight;
     public GameObject highlightRed;
@@ -62,5 +63,10 @@ public class SkinSelect : MonoBehaviour
     public void DisableAchievementText()
     {
         achievement.SetActive(false);
+    }
+
+    public void DisableQuestionMark()
+    {
+        questionMark.SetActive(false);
     }
 }

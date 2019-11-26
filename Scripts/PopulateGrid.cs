@@ -35,6 +35,7 @@ public class PopulateGrid : MonoBehaviour
                 newObj = Instantiate(prefabSkins, transform);
                 newObj.GetComponentInChildren<SkinSelect>().characterNumber = i;
                 newObj.GetComponentInChildren<SkinSelect>().DisableAchievementText();
+                newObj.GetComponentInChildren<SkinSelect>().DisableQuestionMark();
                 newObj.GetComponentInChildren<Image>().sprite = skins[i];
                 if (!PlayerController.newcharUnlock[i])
                 {
@@ -50,6 +51,7 @@ public class PopulateGrid : MonoBehaviour
                 newObj.GetComponentInChildren<SkinSelect>().DisableNewName();
                 if (FindObjectOfType<AchievementController>().achievementCookie[i] != 0)
                 {
+                    newObj.GetComponentInChildren<SkinSelect>().DisableQuestionMark();
                     newObj.GetComponentInChildren<TextMesh>().text = FindObjectOfType<AchievementController>().achievementCookie[i].ToString();
                 }
                 else
