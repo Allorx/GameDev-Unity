@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
     {
         if (TouchController.Tapped)
         {
+            FindObjectOfType<AudioController>().PlayAudio(1);
             ScoreCounter.score++;
             EatAnim();
         }

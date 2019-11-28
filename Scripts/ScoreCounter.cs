@@ -81,17 +81,19 @@ public class ScoreCounter : MonoBehaviour
 
     void HighScoreCheck()
     {
-        if (!highscoreActivated && ScoreCounter.score > PlayerPrefs.GetInt("HighScore") && firstSave)
+        if (ScoreCounter.score > PlayerPrefs.GetInt("HighScore") && firstSave)
         {
-            // Make it flash a few times and disappear
-            highscoreActivated = true;
-            highscore.SetActive(true);
-            StartCoroutine(HighscoreEffects());
+            if (!highscoreActivated)
+            {
+                // Make it flash a few times and disappear
+                highscoreActivated = true;
+                highscore.SetActive(true);
+                StartCoroutine(HighscoreEffects());
+            }
             PlayerPrefs.SetInt("HighScore", ScoreCounter.score);
         }
         else if (!GameManager.gamePlay)
         {
-            PlayerPrefs.SetInt("HighScore", ScoreCounter.score);
             PlayerPrefs.SetInt("FirstSave", 1);
         }
     }

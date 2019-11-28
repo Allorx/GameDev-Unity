@@ -6,17 +6,19 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
 {
 
 #if UNITY_IOS
-    private string gameId = "3369706";
+    private string gameId = "3379105";
 #elif UNITY_ANDROID
-    private string gameId = "3369707";
+    private string gameId = "3379104";
 #endif
 
     public static bool buttonCanBeEnabled;
     public string myPlacementId = "rewardedVideo";
+    static bool canReward = true;
 
     void Start()
     {
         // Initialize the Ads listener and service:
+        canReward = true;
         Advertisement.AddListener(this);
         Advertisement.Initialize(gameId);
     }
@@ -70,8 +72,12 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
 
     public static void RewardUser()
     {
-        FindObjectOfType<PlayerController>().AchievementEffects("Reward");
-        ScoreCounter.cookie += 5;
-        ScoreCounter.CookieSet();
+        if (canReward)
+        {
+            canReward = false;
+            FindObjectOfType<PlayerController>().AchievementEffects("Reward");
+            ScoreCounter.cookie += 5;
+            ScoreCounter.CookieSet();
+        }
     }
 }

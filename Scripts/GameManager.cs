@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject title;
     public float slowMotionScale = 0.5f;
     public float slowMotionDuration = 2f;
     public static bool gamePlay = false;
@@ -18,7 +19,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-
         FindObjectOfType<PlayerController>().ResetAchievementEffects();
         if (gameEnded)
         {
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         {
             FindObjectOfType<ButtonController>().HideButton(false);
         }
-
+        title.SetActive(false);
         yield return new WaitForSecondsRealtime(0.5f);
         TouchController.touchControllerActive = true;
         gameReset = true;
