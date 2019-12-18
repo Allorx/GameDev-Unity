@@ -2897,9 +2897,10 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: 9af4d683829724ff4b13779789b6c760, type: 3}
   - {fileID: 8300000, guid: 68f707c8798ad4d4ab2c30dedbed087c, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: d70a984d42d8f442983b8ee82af08656, type: 3}
+  - {fileID: 8300000, guid: ee803ff03055f4122949d53315104523, type: 3}
+  - {fileID: 8300000, guid: a363cf0f23e8d4221a06b8c869cd3b90, type: 3}
+  - {fileID: 8300000, guid: 72497ae8d506a48a79972c35276ad811, type: 3}
 --- !u!82 &1220131010
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4460,7 +4461,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.066468745}
   m_AnchorMax: {x: 0.5, y: 0.066468745}
-  m_AnchoredPosition: {x: 0, y: -12.000061}
+  m_AnchoredPosition: {x: 0, y: -12}
   m_SizeDelta: {x: 840, y: 308}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1829871837

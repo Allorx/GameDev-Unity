@@ -86,6 +86,7 @@ public class ScoreCounter : MonoBehaviour
             if (!highscoreActivated)
             {
                 // Make it flash a few times and disappear
+                FindObjectOfType<AudioController>().PlayAudio(4);
                 highscoreActivated = true;
                 highscore.SetActive(true);
                 StartCoroutine(HighscoreEffects());
@@ -94,6 +95,7 @@ public class ScoreCounter : MonoBehaviour
         }
         else if (!GameManager.gamePlay)
         {
+            PlayerPrefs.SetInt("HighScore", ScoreCounter.score);
             PlayerPrefs.SetInt("FirstSave", 1);
         }
     }

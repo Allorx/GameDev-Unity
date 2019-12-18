@@ -48,10 +48,16 @@ public class ObjectManager : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
-        else if (colliderInfo.gameObject.tag == "Player")
+        else if (colliderInfo.gameObject.tag == "Player" && !GameManager.gameEnded)
         {
-            if (isStar)
+            if (isBadBlock)
             {
+                FindObjectOfType<AudioController>().PlayAudio(5);
+                FindObjectOfType<GameManager>().EndGame();
+            }
+            else if (isStar)
+            {
+                FindObjectOfType<AudioController>().PlayAudio(2);
                 timeLimitControl.TimePause();
                 PostProcessController.StartPostProcess();
                 //StarParticleController.StartStars();
@@ -59,14 +65,11 @@ public class ObjectManager : MonoBehaviour
             }
             else if (isCookie)
             {
+                FindObjectOfType<AudioController>().PlayAudio(3);
                 FindObjectOfType<PlayerController>().HeartAnimation();
                 ScoreCounter.cookie++;
                 ScoreCounter.CookieSet();
                 gameObject.SetActive(false);
-            }
-            else
-            {
-                FindObjectOfType<GameManager>().EndGame();
             }
         }
     }
