@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
         PostProcessController.EndPostProcess();
         CameraShake.shakeDuration = 2f;
         FindObjectOfType<TimeLimitController>().StopTimer();
+        FindObjectOfType<AudioController>().PlayAudio(5);
 
         gameEnded = true;
         gamePlay = false;
