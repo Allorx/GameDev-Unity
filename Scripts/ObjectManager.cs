@@ -52,7 +52,6 @@ public class ObjectManager : MonoBehaviour
         {
             if (isBadBlock)
             {
-                FindObjectOfType<AudioController>().PlayAudio(5);
                 FindObjectOfType<GameManager>().EndGame();
             }
             else if (isStar)

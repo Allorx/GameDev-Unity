@@ -4801,8 +4801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1496d02d68aaa4429a2816283349f7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementScore: 0a000000140000001e00000028000000320000000000000000000000000000000000000000000000
-  achievementCookie: 00000000000000000000000000000000000000000a0000000a0000000a0000000a0000000a000000
+  achievementScore: 01000000010000000100000001000000
+  achievementCookie: 000000003200000064000000c8000000
   scrollViewObject: {fileID: 1829871835}
 --- !u!114 &1964303526
 MonoBehaviour:
@@ -4822,26 +4822,14 @@ MonoBehaviour:
   deathTransform: {x: 0, y: -0.1, z: 0}
   character:
   - {fileID: 22100000, guid: 58391d72b15b64a49a70b656544cca87, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 22100000, guid: 6a5921a97997b44b49c805bf9d978c4e, type: 2}
+  - {fileID: 22100000, guid: 18dc73ba0e4ad49fdbc92721259bab80, type: 2}
+  - {fileID: 22100000, guid: 45f747966a7f442b79b161f73fc50294, type: 2}
   characterSprite:
   - {fileID: 3731302523187420078, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
-  - {fileID: 3731302523187420078, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
-  - {fileID: 3731302523187420078, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
-  - {fileID: 3731302523187420078, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
-  - {fileID: 3731302523187420078, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
-  - {fileID: 3731302523187420078, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
-  - {fileID: 3731302523187420078, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
-  - {fileID: 3731302523187420078, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
-  - {fileID: 3731302523187420078, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
-  - {fileID: 3731302523187420078, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
+  - {fileID: 227288339461471300, guid: 2a14ac69880a742649fcea958d26e075, type: 3}
+  - {fileID: -1475836728191126944, guid: 468ea168c73bc408aa5f561fc15c796f, type: 3}
+  - {fileID: -1941744366534466742, guid: 4b173cc5b2fd2416293bdb6e0b26c8f2, type: 3}
   achievementObj: {fileID: 225456914}
   newName: {fileID: 573981955}
   heartAnim: {fileID: 1708948212}
@@ -5108,7 +5096,7 @@ PrefabInstance:
     - target: {fileID: 575265438337760911, guid: 92d60a2e17d9a4bb8bd3801b14fc2926,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -72.24249
+      value: -72.242676
       objectReference: {fileID: 0}
     - target: {fileID: 575265438337760911, guid: 92d60a2e17d9a4bb8bd3801b14fc2926,
         type: 3}
