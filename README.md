@@ -1,2 +1,2 @@
 # GameDev
-This includes game files for all games
+This includes game files for all unity/simple games
