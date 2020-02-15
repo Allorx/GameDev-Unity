@@ -6,16 +6,21 @@ using UnityEngine;
 public class AudioController : MonoBehaviour
 {
     public AudioClip[] audioClips;
-    AudioSource audioSources;
+    AudioSource[] audioSources;
 
     void Awake()
     {
-        audioSources = GetComponentInChildren<AudioSource>();
+        audioSources = GetComponentsInChildren<AudioSource>();
     }
 
     public void PlayAudio(int clipNumber)
     {
-        audioSources.clip = audioClips[clipNumber];
-        audioSources.Play();
+        audioSources[0].clip = audioClips[clipNumber];
+        audioSources[0].Play();
+    }
+
+    public void StopMusic()
+    {
+        audioSources[1].Stop();
     }
 }

@@ -73,7 +73,7 @@ public class ScoreCounter : MonoBehaviour
         if (score > lastScore)
         {
             HighScoreCheck();
-            DecreasecharacterSize();
+            DecreaseCharacterSize();
             scoreText.text = score.ToString();
             lastScore = score;
         }
@@ -113,7 +113,7 @@ public class ScoreCounter : MonoBehaviour
         scoreText.color = highscoreScoreColour;
     }
 
-    void DecreasecharacterSize()
+    void DecreaseCharacterSize()
     {
         if (score > 9999)
         {

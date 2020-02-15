@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
         CameraShake.shakeDuration = 2f;
         FindObjectOfType<TimeLimitController>().StopTimer();
         FindObjectOfType<AudioController>().PlayAudio(5);
+        FindObjectOfType<AudioController>().StopMusic();
 
         gameEnded = true;
         gamePlay = false;
