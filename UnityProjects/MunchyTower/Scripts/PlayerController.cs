@@ -125,6 +125,7 @@ public class PlayerController : MonoBehaviour
                 playerTransform.localPosition += scaleLeft;
                 deathTransform.y -= scaleLeft.y;
             }
+            Debug.Log("Scale");
         }
     }
 

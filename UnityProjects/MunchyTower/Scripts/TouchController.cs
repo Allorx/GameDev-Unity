@@ -16,6 +16,9 @@ public class TouchController : MonoBehaviour
 
     public bool isPressed = false;
     static bool tap = false;
+    static bool keyPressed = false;
+    static bool keyLeft;
+    static bool keyRight;
     static bool tapLeft;
     static bool tapRight;
     bool tapReset = true;
@@ -57,6 +60,24 @@ public class TouchController : MonoBehaviour
             Reset();
         }
 
+        // Keyboard Input
+        if (Input.GetKeyDown("left"))
+        {
+            isPressed = true;
+            keyLeft = true;
+            keyPressed = true;
+        }
+        else if (Input.GetKeyDown("right"))
+        {
+            isPressed = true;
+            keyRight = true;
+            keyPressed = true;
+        }
+        else if (Input.GetKeyUp("left") || Input.GetKeyUp("right"))
+        {
+            Reset();
+        }
+
         // Mobile Input
         if (Input.touchCount > 0)
         {
@@ -80,11 +101,19 @@ public class TouchController : MonoBehaviour
         if (isPressed && tapReset)
         {
             tap = true;
-            if (startTouch.x < screenWidth / 2)
+            if (!keyPressed && startTouch.x < screenWidth / 2)
             {
                 tapLeft = true;
             }
-            else if (startTouch.x > screenWidth / 2)
+            else if (!keyPressed && startTouch.x > screenWidth / 2)
+            {
+                tapRight = true;
+            }
+            if (keyLeft)
+            {
+                tapLeft = true;
+            }
+            else if (keyRight)
             {
                 tapRight = true;
             }
@@ -144,7 +173,10 @@ public class TouchController : MonoBehaviour
     void Reset()
     {
         startTouch = swipeDelta = Vector2.zero;
+        keyLeft = keyRight = false;
+        keyPressed = false;
         isPressed = false;
         tapReset = true;
+
     }
 }
