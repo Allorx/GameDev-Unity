@@ -50,6 +50,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6ded847ffbd4c81b62e83abc02b48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bx: {fileID: 0}
 --- !u!114 &5754292640009748947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,14 +119,12 @@ MonoBehaviour:
   - {r: 1, g: 0.54509807, b: 0.17254902, a: 1}
   - {r: 0.8980392, g: 0.65882355, b: 0.47843137, a: 1}
   goodBlockSprite:
-  - {fileID: 6118276746749395463, guid: dbafd400817cf41bb8385360eee2849c, type: 3}
-  - {fileID: 3589845779319184526, guid: 4bb95524ea0954ac5ad21f36e82ecd80, type: 3}
-  - {fileID: -8548466655734529709, guid: 190c2b012da814665a9dd38b0d959034, type: 3}
-  - {fileID: -1241946091501096367, guid: d0e92d968bbdd4dd58fc25fd06531e9f, type: 3}
-  - {fileID: -3378629362442859734, guid: 737b5eda631a54dd5833197a6dbd9b68, type: 3}
+  - {fileID: 21300000, guid: aca1290ef86e24376b261ef87217c3ea, type: 3}
   badBlockSprite: []
   isGoodBlock: 1
   isBadBlock: 0
+  isStar: 0
+  isCookie: 0
 --- !u!50 &7659755096579285416
 Rigidbody2D:
   serializedVersion: 4

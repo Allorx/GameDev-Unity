@@ -162,15 +162,18 @@ public class PlayerController : MonoBehaviour
 
     void LoadCharacterUnlock()
     {
-        for (int i = 0; i < character.Length; i++)
+        if (character != null)
         {
-            charUnlocked[i] = PlayerPrefs.GetInt("unlock" + i.ToString()) == 1 ? true : false;
-            newcharUnlock[i] = PlayerPrefs.GetInt("firstUnlock" + i.ToString()) == 1 ? true : false;
+            for (int i = 0; i < character.Length; i++)
+            {
+                charUnlocked[i] = PlayerPrefs.GetInt("unlock" + i.ToString()) == 1 ? true : false;
+                newcharUnlock[i] = PlayerPrefs.GetInt("firstUnlock" + i.ToString()) == 1 ? true : false;
+            }
+            // unlock default character
+            charUnlocked[0] = true;
+            // disable new name on default character
+            newcharUnlock[0] = false;
         }
-        // unlock default character
-        charUnlocked[0] = true;
-        // disable new name on default character
-        newcharUnlock[0] = false;
     }
 
     public void AchievementEffects(string type)
