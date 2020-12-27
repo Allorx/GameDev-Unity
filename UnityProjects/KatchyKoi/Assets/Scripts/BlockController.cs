@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockController : MonoBehaviour
 {
-    float fallAmount = 1;
+    float fallAmount = 2f;
     static Vector3 fallVector;
 
     void Start()
@@ -12,11 +12,8 @@ public class BlockController : MonoBehaviour
         fallVector = new Vector3(0, fallAmount, 0);
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (TouchController.Tapped)
-        {
-            transform.position -= fallVector;
-        }
+        transform.position -= fallVector*Time.deltaTime;
     }
 }

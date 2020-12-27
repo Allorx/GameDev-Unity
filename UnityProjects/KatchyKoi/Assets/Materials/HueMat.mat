@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HueMat
-  m_Shader: {fileID: -6465566751694194690, guid: f75e07ded72024c7797ee58b78d75086,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: f75e07ded72024c7797ee58b78d75086, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -25,8 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_894D9D91:
-        m_Texture: {fileID: -5103564192835267696, guid: 23f7db6ad0a814b2da6293f9d8d6196c,
-          type: 3}
+        m_Texture: {fileID: -5103564192835267696, guid: 23f7db6ad0a814b2da6293f9d8d6196c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -82,11 +80,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - HueAmount: {r: 15, g: 0, b: 0, a: 0}
+    - HueAmount: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+  m_BuildTextureStacks: []
 --- !u!114 &7469047771804000317
 MonoBehaviour:
   m_ObjectHideFlags: 11

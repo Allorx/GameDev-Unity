@@ -4,7 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject playerFlipPoint;
+    //new
+    public Rigidbody2D rb;
+    public float crossMidVelocityReduction = 0.5f;
+    public float forceMultiplier = 1.0f;
+    public float amountGravity = 5;
+    Vector2 forceVector = new Vector2(1,0);
+    static Vector2 gravityDirection = new Vector2(1,0);
+    float previousX = 0f;
+    float currentX;
+
+    //old
     public Collider2D collisionBox;
     public static GameObject player;
     public Transform playerTransform;
@@ -30,6 +40,9 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        //new
+        Physics2D.gravity = gravityDirection*0;
+        //old
         ResetAchievementEffects();
         animControl = GetComponentInChildren<Animator>();
         characterList = character;
@@ -70,8 +83,9 @@ public class PlayerController : MonoBehaviour
     {
         if (playerCanMove)
         {
-            //Flip sides
-            Flip();
+            //Jump against gravity
+            CrossMidCheck();
+            Jump();
         }
         else if (!movementActivated && GameManager.gamePlay)
         {
@@ -80,8 +94,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Flip()
+    void Jump()
     {
+        //new
+        if (TouchController.Tapped)
+        {
+            if(rb.position.x > 0f && rb.position.x > 0.05f){
+                rb.AddForce(-forceVector*forceMultiplier*0.05f, ForceMode2D.Impulse);
+            }
+            else if(rb.position.x < 0f && rb.position.x < -0.05f){
+                rb.AddForce(forceVector*forceMultiplier*0.05f, ForceMode2D.Impulse);
+            }
+        }
+        /*old
         if (TouchController.Tapped)
         {
             FindObjectOfType<AudioController>().PlayAudio(1);
@@ -108,8 +133,9 @@ public class PlayerController : MonoBehaviour
             }
             ScaleMove(true);
         }
+        */
     }
-
+    /*
     void ScaleMove(bool Right)
     {
         if (ScoreCounter.score > 0 && playerTransform.localScale.x < maxScale.x && ScoreCounter.score % 50 == 0)
@@ -128,6 +154,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Scale");
         }
     }
+    */
 
     void EatAnim()
     {
@@ -138,6 +165,8 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.2f);
         playerCanMove = true;
+        //new
+        Physics2D.gravity = gravityDirection*amountGravity;
     }
 
     public static void DestroyPlayer()
@@ -196,5 +225,29 @@ public class PlayerController : MonoBehaviour
     public void HeartAnimation()
     {
         heartAnim.Play("heart", -1, 0f);
+    }
+
+//New
+    void CrossMidCheck(){ 
+        currentX = rb.transform.position.x;
+        if((currentX > 0 && previousX < 0) || (currentX < 0 && previousX > 0)){
+            ReduceVelocity();
+            SwitchGravity();
+        }
+        previousX = currentX;
+    }
+
+    void ReduceVelocity(){
+        rb.velocity = rb.velocity*crossMidVelocityReduction;
+    }
+
+    void SwitchGravity(){
+        if(rb.position.x > 0f){
+            Physics2D.gravity = gravityDirection*amountGravity;
+        }
+        else if(rb.position.x < 0f){
+            Physics2D.gravity = -gravityDirection*amountGravity;
+                
+        }
     }
 }

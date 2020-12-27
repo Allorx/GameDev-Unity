@@ -21,47 +21,25 @@ public class BlockSpawn : MonoBehaviour
     int splitChance = 50;
     int numOfGood = 0;
 
+    //new
+    public float timeToSpawn = 2f;
+	public float timeBetweenSpawn = 0.25f;
+
     void Start()
     {
         objectPooler = GetComponent<ObjectPooler>();
-        InitialSpawn();
+        //InitialSpawn();
         numOfGood = maxNumGood;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (TouchController.Tapped)
-        {
-            if (!spawnedBad && numOfGood == 0)
-            {
-                sideToSpawn = SideSelection(splitChance);
-                randNum = Random.Range(0, objectTagBad.Length);
-                Spawn(objectTagBad[randNum], transform.position);
-                spawnedBad = true;
-            }
-            else
-            {
-                if (spawnedBad)
-                {
-                    numOfGood = Random.Range(0, maxNumGood) + 1;
-                }
-                if (ScoreCounter.score % 20 == 0)
-                {
-                    Spawn(objectTagStar[randNum], transform.position);
-                }
-                if (ScoreCounter.score % 45 == 0 && ScoreCounter.score % 20 != 0)
-                {
-                    Spawn(objectTagCookie[randNum], transform.position);
-                }
-                sideToSpawn = SideSelection(splitChance);
-                randNum = Random.Range(0, objectTagGood.Length);
-                Spawn(objectTagGood[randNum], transform.position);
-                spawnedBad = false;
-                numOfGood--;
-            }
-        }
+		if(Time.timeSinceLevelLoad >= timeToSpawn){
+			Spawn(objectTagGood[randNum], startPosition);
+			timeToSpawn = Time.timeSinceLevelLoad + timeBetweenSpawn;
+		}
     }
-
+/*
     void InitialSpawn()
     {
         for (int i = 0; i < initialAmount; i++)
@@ -88,7 +66,7 @@ public class BlockSpawn : MonoBehaviour
             startPosition += distancePosition;
         }
     }
-
+*/
     void Spawn(string block, Vector3 position)
     {
         switch (block)
