@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     public Transform camTransform;
     public Transform playerTransform;
     public float followRange = 2;
+    public float camSmoothing = 0.1f;
 
     // How long the object should shake for.
     public static float shakeDuration = 0f;
@@ -18,23 +19,23 @@ public class CameraController : MonoBehaviour
 
     Vector3 originalPos;
 
-    void Awake()
-    {
-        if (camTransform == null)
-        {
-            camTransform = GetComponent(typeof(Transform)) as Transform;
+    void Awake(){
+        originalPos = camTransform.localPosition;
+    }
+
+    void LateUpdate(){
+        //Follow
+        if(PlayerController.movementActivated && playerTransform.position.x < followRange && playerTransform.position.x > -followRange){
+            Vector3 target = new Vector3(playerTransform.position.x, originalPos.y, originalPos.z);
+            camTransform.localPosition = Vector3.Lerp(camTransform.position, target, camSmoothing);
+        }
+        else{
+            originalPos = camTransform.localPosition;
         }
     }
 
     void Update()
     {
-        //Follow
-        if(PlayerController.movementActivated && playerTransform.position.x < followRange && playerTransform.position.x > -followRange){
-            camTransform.localPosition = new Vector3(playerTransform.position.x, originalPos.y, originalPos.z);
-        }
-        else{
-            originalPos = camTransform.localPosition;
-        }
         //Shake
         if (shakeDuration > 0)
         {

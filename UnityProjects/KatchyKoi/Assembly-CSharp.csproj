@@ -700,14 +700,14 @@
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
         <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements.Editor">
+        <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
         <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements.Editor">
-        <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

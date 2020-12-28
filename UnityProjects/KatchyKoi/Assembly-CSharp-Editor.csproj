@@ -36,48 +36,48 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AsePaletteChunk.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\CelType.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AsePaletteEntry.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\ColorProfileFlags.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseLayerChunk.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\LayerType.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\IAseVisitor.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\HeaderFlags.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseColorProfileChunk.cs" />
      <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseReader.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseSliceChunk.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\Blender.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\SliceFlags.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseFrameTagEntry.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\ChunkFactory.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseChunk.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\CelType.cs" />
      <Compile Include="Assets\Aseprite2Unity\Editor\AseAssetPostprocessor.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseDummyChunk.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseSliceChunk.cs" />
      <Compile Include="Assets\Aseprite2Unity\Editor\AssetDatabaseEx.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\ColorDepth.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseFile.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\ChunkType.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\LoopAnimationDirection.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\EnumExtensions.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseSliceEntry.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\ColorProfileFlags.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AsePaletteEntry.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseFrame.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AsepriteImporter.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\Blender.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\PixmanCombine.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\BlendMode.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseUserDataChunk.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseCelChunk.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\DocColor.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\UniqueNameifier.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AsePaletteChunk.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\LayerChunkFlags.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseFrameTagsChunk.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\ColorProfileType.cs" />
+     <Compile Include="Assets\Editor\Instant Screenshot\ScreenshotTaker.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AsepriteImporterEditor.cs" />
+     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseDummyChunk.cs" />
      <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseHeader.cs" />
      <Compile Include="Assets\Aseprite2Unity\Editor\SpriteAtlasUserAsset.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\ColorDepth.cs" />
      <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\UserDataFlags.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseFile.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\ChunkFactory.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\HeaderFlags.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\ColorProfileType.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\SliceFlags.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\LoopAnimationDirection.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseFrame.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\LayerType.cs" />
      <Compile Include="Assets\Aseprite2Unity\Editor\Deploy.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\IAseVisitor.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\PixmanCombine.cs" />
-     <Compile Include="Assets\Editor\Instant Screenshot\ScreenshotTaker.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseColorProfileChunk.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseLayerChunk.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\EnumExtensions.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseFrameTagEntry.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\BlendMode.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseCelChunk.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\LayerChunkFlags.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseSliceEntry.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseFrameTagsChunk.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\UniqueNameifier.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AsepriteImporter.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\DocColor.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseChunk.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\ChunkType.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AsepriteImporterEditor.cs" />
-     <Compile Include="Assets\Aseprite2Unity\Editor\AseReader\AseUserDataChunk.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity/Hub/Editor/2020.2.0b2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -314,12 +314,6 @@
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions">
         <HintPath>/Applications/Unity/Hub/Editor/2020.2.0b2/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements.Editor">
-        <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Assets/UnityAds/UnityEngine.Advertisements.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Monetization.Editor">
-        <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Assets/UnityAds/UnityEngine.Monetization.Editor.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
         <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/PackageCache/com.unity.render-pipelines.core@8.1.0/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
@@ -723,8 +717,14 @@
     <Reference Include="Unity.Searcher.Editor">
         <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Monetization">
+        <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
         <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+        <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -732,17 +732,14 @@
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
         <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements.Editor">
+        <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
         <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-        <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Monetization">
-        <HintPath>/Users/Alex/Documents/GitHub/GameDev/UnityProjects/KatchyKoi/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
