@@ -14,7 +14,7 @@ public class ScoreCounter : MonoBehaviour
     public static int score = 0;
     public static int lastScore = 0;
     bool firstSave = false;
-    bool resetScoreOnce = true;
+    bool resetScoreOnce = false;
     int flashTimes = 5;
     Color originalScoreColour;
     bool highscoreActivated;
@@ -23,8 +23,6 @@ public class ScoreCounter : MonoBehaviour
     {
         cookieTextStatic = cookieText;
         ButtonController.startScore = false;
-        score = 0;
-        lastScore = 0;
         scoreText.characterSize = 5f;
         originalScoreColour = scoreText.color;
 
@@ -49,29 +47,29 @@ public class ScoreCounter : MonoBehaviour
 
     void Update()
     {
-        if (ButtonController.startScore && score != 0)
+        if (!resetScoreOnce && ButtonController.startScore)
         {
             // Make transition from Highscore to 0
             ScoreReset();
             scoreText.text = score.ToString();
         }
         ScoreCheck();
+        
     }
 
     void ScoreReset()
     {
         gameObject.SetActive(true);
-        while (resetScoreOnce)
-        {
-            resetScoreOnce = false;
-            score = 0;
-        }
+        resetScoreOnce = true;
+        score = 0;
+        lastScore = 0;
     }
 
     void ScoreCheck()
     {
         if (score > lastScore)
         {
+            TimeLimitController.IncreaseHealth();
             HighScoreCheck();
             DecreaseCharacterSize();
             scoreText.text = score.ToString();

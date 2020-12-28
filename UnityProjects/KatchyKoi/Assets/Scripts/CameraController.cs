@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraShake : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
-    // Transform of the camera to shake. Grabs the gameObject's transform
-    // if null.
     public Transform camTransform;
+    public Transform playerTransform;
+    public float followRange = 2;
 
     // How long the object should shake for.
     public static float shakeDuration = 0f;
@@ -26,13 +26,16 @@ public class CameraShake : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        originalPos = camTransform.localPosition;
-    }
-
     void Update()
     {
+        //Follow
+        if(PlayerController.movementActivated && playerTransform.position.x < followRange && playerTransform.position.x > -followRange){
+            camTransform.localPosition = new Vector3(playerTransform.position.x, originalPos.y, originalPos.z);
+        }
+        else{
+            originalPos = camTransform.localPosition;
+        }
+        //Shake
         if (shakeDuration > 0)
         {
             camTransform.localPosition = originalPos + Random.insideUnitSphere * (shakeAmount) / 100;
@@ -40,7 +43,7 @@ public class CameraShake : MonoBehaviour
             shakeDuration -= Time.fixedUnscaledDeltaTime * decreaseFactor;
             shakeAmount -= decreaseShakeAmount;
         }
-        else
+        else if(!PlayerController.movementActivated)
         {
             shakeDuration = 0f;
             camTransform.localPosition = originalPos;

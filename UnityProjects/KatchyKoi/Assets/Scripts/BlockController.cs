@@ -14,6 +14,8 @@ public class BlockController : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position -= fallVector*Time.deltaTime;
+        if(PlayerController.movementActivated){
+            transform.position -= fallVector*Time.deltaTime;
+        }
     }
 }

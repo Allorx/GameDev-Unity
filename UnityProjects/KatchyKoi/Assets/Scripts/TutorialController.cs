@@ -6,7 +6,7 @@ public class TutorialController : MonoBehaviour
 {
     void Update()
     {
-        if (ScoreCounter.score > 0 && TouchController.Tapped)
+        if (PlayerController.movementActivated)
         {
             gameObject.SetActive(false);
         }

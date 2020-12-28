@@ -38,19 +38,17 @@ public class ObjectManager : MonoBehaviour
     {
         if (colliderInfo.gameObject.tag == "DestroyVolume" && canBeDestroyed)
         {
-            if (isStar || isCookie)
-            {
-                gameObject.SetActive(false);
-            }
-            else
-            {
-                ParticleController.ParticleFall(spriteColour[2]);
-                gameObject.SetActive(false);
-            }
+            gameObject.SetActive(false);
         }
         else if (colliderInfo.gameObject.tag == "Player" && !GameManager.gameEnded)
         {
-            if (isBadBlock)
+            if (isGoodBlock)
+            {
+                ScoreCounter.score++;
+                ParticleController.ParticleFall(spriteColour[2]);
+                gameObject.SetActive(false);
+            }
+            else if (isBadBlock)
             {
                 FindObjectOfType<GameManager>().EndGame();
             }

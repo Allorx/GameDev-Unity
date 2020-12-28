@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     //new
     public Rigidbody2D rb;
+    public float slowRange = 4;
+    public Vector2 slowEffect = new Vector2(0, 0.01f);
+    public float deathRange = 4;
     public float crossMidVelocityReduction = 0.5f;
     public float forceMultiplier = 1.0f;
     public float amountGravity = 5;
@@ -30,9 +33,8 @@ public class PlayerController : MonoBehaviour
     public Animator heartAnim;
     static Animator animControl;
     bool achievementEnabled = false;
-    bool movementActivated = false;
+    public static bool movementActivated = false;
     bool playerCanMove = true;
-    bool flippedLeft;
     Vector3 scaleLeft = new Vector3(-0.05f, 0.05f, 0f);
     Vector3 scaleRight = new Vector3(0.05f, 0.05f, 0f);
     Vector3 scaleIncrease = new Vector3(0.1f, 0.1f, 0.1f);
@@ -55,7 +57,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        flippedLeft = true;
         player = gameObject;
     }
 
@@ -97,8 +98,15 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         //new
-        if (TouchController.Tapped)
+        if(rb.position.x > slowRange || rb.position.x < -slowRange){
+            rb.position -= slowEffect*Time.deltaTime;
+        }
+        if(rb.position.y < -deathRange){
+            FindObjectOfType<GameManager>().EndGame();
+        }
+        else if (TouchController.Tapped)
         {
+            FindObjectOfType<AudioController>().PlayAudio(1);
             if(rb.position.x > 0f && rb.position.x > 0.05f){
                 rb.AddForce(-forceVector*forceMultiplier*0.05f, ForceMode2D.Impulse);
             }
@@ -109,8 +117,6 @@ public class PlayerController : MonoBehaviour
         /*old
         if (TouchController.Tapped)
         {
-            FindObjectOfType<AudioController>().PlayAudio(1);
-            ScoreCounter.score++;
             EatAnim();
         }
         if (TouchController.TappedLeft)
@@ -166,7 +172,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.2f);
         playerCanMove = true;
         //new
-        Physics2D.gravity = gravityDirection*amountGravity;
+        SwitchGravity();
     }
 
     public static void DestroyPlayer()
@@ -174,10 +180,20 @@ public class PlayerController : MonoBehaviour
         player.GetComponentInChildren<PlayerController>().PlayDeathEffects();
     }
 
+    void OnTriggerEnter2D(Collider2D colliderInfo)
+    {
+        if (colliderInfo.gameObject.tag == "DestroyVolume")
+        {
+             playerTransform.position += deathTransform;
+        }
+    }
+
     void PlayDeathEffects()
     {
+        playerCanMove = false;
+        movementActivated = false;
+        Physics2D.gravity = new Vector2(0,-1)*amountGravity;
         animControl.Play("death", -1, 0f);
-        playerTransform.position += deathTransform;
         collisionBox.enabled = false;
     }
 
@@ -238,6 +254,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void ReduceVelocity(){
+        playerCanMove = false;
+        StartCoroutine(ActivateMovement());
         rb.velocity = rb.velocity*crossMidVelocityReduction;
     }
 
@@ -246,8 +264,7 @@ public class PlayerController : MonoBehaviour
             Physics2D.gravity = gravityDirection*amountGravity;
         }
         else if(rb.position.x < 0f){
-            Physics2D.gravity = -gravityDirection*amountGravity;
-                
+            Physics2D.gravity = -gravityDirection*amountGravity;     
         }
     }
 }

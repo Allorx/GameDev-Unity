@@ -53,15 +53,16 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndLevel()
     {
+        gameEnded = true;
+        gamePlay = false;
+
         PlayerController.DestroyPlayer();
         PostProcessController.EndPostProcess();
-        CameraShake.shakeDuration = 2f;
+        CameraController.shakeDuration = 2f;
         FindObjectOfType<TimeLimitController>().StopTimer();
         FindObjectOfType<AudioController>().PlayAudio(5);
         FindObjectOfType<AudioController>().StopMusic();
 
-        gameEnded = true;
-        gamePlay = false;
         TouchController.touchControllerActive = false;
         Time.timeScale = slowMotionScale;
         yield return new WaitForSecondsRealtime(slowMotionDuration);

@@ -11,6 +11,7 @@ public class TimeLimitController : MonoBehaviour
     public float timeCounter = 3f;
     public float timeLimit = 3f;
     public float starWaitTime = 5f;
+    public static GameObject timer;
     bool activatedTimer = false;
     Coroutine timerRoutine;
     Coroutine waitTimerRoutine;
@@ -19,6 +20,10 @@ public class TimeLimitController : MonoBehaviour
     void Awake()
     {
         originalColour = healthBar.color;
+    }
+
+    void Start(){
+        timer = gameObject;
     }
 
     void Update()
@@ -30,17 +35,24 @@ public class TimeLimitController : MonoBehaviour
             activatedTimer = true;
             timerRoutine = StartCoroutine(Timer());
         }
-        if (TouchController.Tapped && timeLimit > 0.5 && ScoreCounter.score >= 1 && ScoreCounter.score % 20 == 0)
+    }
+
+    public static void IncreaseHealth(){
+        timer.GetComponentInChildren<TimeLimitController>().IncreaseTime();
+    }
+
+    void IncreaseTime(){
+        if (timeLimit > 2 && ScoreCounter.score >= 1 && ScoreCounter.score % 20 == 0)
         {
             timeLimit -= 20f / ScoreCounter.score;
             timeCounter -= 20f / ScoreCounter.score;
             Debug.Log("Decreased time" + timeLimit);
         }
-        if (TouchController.Tapped && timeCounter < timeLimit - timeCounter)
+        if (timeCounter < timeLimit - timeCounter)
         {
-            timeCounter += 0.25f;
+            timeCounter += 4f;
         }
-        else if (TouchController.Tapped && timeCounter < timeLimit)
+        else if (timeCounter < timeLimit)
         {
             timeCounter = timeLimit;
         }

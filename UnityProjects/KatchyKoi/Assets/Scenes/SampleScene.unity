@@ -866,7 +866,12 @@ MonoBehaviour:
   objectPooler: {fileID: 313836182}
   maxNumGood: 2
   initialAmount: 12
-  startPosition: {x: 0, y: 10, z: 0}
+  startPosition:
+  - {x: -3, y: 10, z: 0}
+  - {x: -1.5, y: 10, z: 0}
+  - {x: 0, y: 10, z: 0}
+  - {x: 1.5, y: 10, z: 0}
+  - {x: 3, y: 10, z: 0}
   distancePosition: {x: 0, y: 1, z: 0}
   blockOffset: {x: -1, y: 0, z: 0}
   starOffset: {x: -1, y: 0, z: 0}
@@ -1007,7 +1012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &437837788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1221,7 +1226,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &487234281
 GameObject:
@@ -1620,7 +1625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &723517059
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2143,7 +2148,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 10, y: 15}
+  m_Size: {x: 8, y: 15}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2802,12 +2807,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220131002}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1220131007
 MonoBehaviour:
@@ -2853,6 +2858,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camTransform: {fileID: 1220131006}
+  playerTransform: {fileID: 1964303527}
+  followRange: 2
   shakeAmount: 10
   decreaseFactor: 1
   decreaseShakeAmount: 0.1
@@ -2886,11 +2893,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -2986,7 +2993,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -4445,8 +4452,8 @@ MonoBehaviour:
   starParticles: {fileID: 1560885891}
   starBar: {r: 1, g: 0.8427868, b: 0, a: 1}
   healthBar: {fileID: 1809995726}
-  timeCounter: 3
-  timeLimit: 3
+  timeCounter: 20
+  timeLimit: 20
   starWaitTime: 4
 --- !u!1 &1829871835
 GameObject:
@@ -4742,9 +4749,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867709925}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -10, z: 0}
-  m_LocalScale: {x: 8.4625, y: 1.775, z: 1}
+  m_LocalScale: {x: 17.87703, y: 1.775, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -4905,6 +4912,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1964303528}
+  slowRange: 4
+  slowEffect: {x: 0, y: 1.5}
+  deathRange: 4
   crossMidVelocityReduction: 0.5
   forceMultiplier: 85
   amountGravity: 5
@@ -5043,7 +5053,7 @@ Transform:
   m_LocalScale: {x: 8.46356, y: 15.155063, z: 6.0454}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1980613500
 MonoBehaviour:

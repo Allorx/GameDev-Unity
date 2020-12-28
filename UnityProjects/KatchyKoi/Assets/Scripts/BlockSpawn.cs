@@ -11,14 +11,10 @@ public class BlockSpawn : MonoBehaviour
     public ObjectPooler objectPooler;
     public int maxNumGood = 1;
     public int initialAmount = 11;
-    public Vector3 startPosition = new Vector3(0, -2f, 0);
+    public Vector3[] startPosition;
     public Vector3 distancePosition = new Vector3(0, 1, 0);
     public Vector3 blockOffset = new Vector3(-1, 0, 0);
     public Vector3 starOffset = new Vector3(-1, 0, 0);
-    bool spawnedBad = true;
-    bool sideToSpawn;
-    int randNum;
-    int splitChance = 50;
     int numOfGood = 0;
 
     //new
@@ -34,11 +30,18 @@ public class BlockSpawn : MonoBehaviour
 
     void FixedUpdate()
     {
-		if(Time.timeSinceLevelLoad >= timeToSpawn){
-			Spawn(objectTagGood[randNum], startPosition);
-			timeToSpawn = Time.timeSinceLevelLoad + timeBetweenSpawn;
+		if(PlayerController.movementActivated && Time.timeSinceLevelLoad >= timeToSpawn){
+            if(SideSelection(40)){
+                Spawn(objectTagGood[0], startPosition[Random.Range(0,5)]);
+			    timeToSpawn = Time.timeSinceLevelLoad + timeBetweenSpawn;
+            }
+            else{
+                Spawn(objectTagBad[0], startPosition[Random.Range(0,5)]);
+			    timeToSpawn = Time.timeSinceLevelLoad + timeBetweenSpawn;
+            }
 		}
     }
+
 /*
     void InitialSpawn()
     {
@@ -72,44 +75,16 @@ public class BlockSpawn : MonoBehaviour
         switch (block)
         {
             case "Good":
-                if (sideToSpawn)
-                {
-                    objectPooler.SpawnFromPool(block, position, Quaternion.Euler(0, 180, 0));
-                }
-                else
-                {
-                    objectPooler.SpawnFromPool(block, position, Quaternion.identity);
-                }
+                objectPooler.SpawnFromPool(block, position, Quaternion.identity);
                 break;
             case "Bad":
-                if (sideToSpawn)
-                {
-                    objectPooler.SpawnFromPool(block, position - blockOffset, Quaternion.Euler(0, 180, 0));
-                }
-                else
-                {
-                    objectPooler.SpawnFromPool(block, position + blockOffset, Quaternion.identity);
-                }
+                objectPooler.SpawnFromPool(block, position + blockOffset, Quaternion.identity);
                 break;
             case "Star":
-                if (sideToSpawn)
-                {
-                    objectPooler.SpawnFromPool(block, position - starOffset, Quaternion.Euler(0, 180, 0));
-                }
-                else
-                {
-                    objectPooler.SpawnFromPool(block, position + starOffset, Quaternion.identity);
-                }
+                objectPooler.SpawnFromPool(block, position + starOffset, Quaternion.identity);
                 break;
             case "Cookie":
-                if (sideToSpawn)
-                {
-                    objectPooler.SpawnFromPool(block, position - starOffset, Quaternion.Euler(0, 180, 0));
-                }
-                else
-                {
-                    objectPooler.SpawnFromPool(block, position + starOffset, Quaternion.identity);
-                }
+                objectPooler.SpawnFromPool(block, position + starOffset, Quaternion.identity);            
                 break;
             default:
                 break;
