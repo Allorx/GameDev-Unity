@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BlockSpawn : MonoBehaviour
 {
-    public string[] objectTagBad;
-    public string[] objectTagGood;
+    public string[] objectTagBlock;
     public string[] objectTagStar;
     public string[] objectTagCookie;
     public ObjectPooler objectPooler;
@@ -31,14 +30,8 @@ public class BlockSpawn : MonoBehaviour
     void FixedUpdate()
     {
 		if(PlayerController.movementActivated && Time.timeSinceLevelLoad >= timeToSpawn){
-            if(SideSelection(40)){
-                Spawn(objectTagGood[0], startPosition[Random.Range(0,5)]);
-			    timeToSpawn = Time.timeSinceLevelLoad + timeBetweenSpawn;
-            }
-            else{
-                Spawn(objectTagBad[0], startPosition[Random.Range(0,5)]);
-			    timeToSpawn = Time.timeSinceLevelLoad + timeBetweenSpawn;
-            }
+            Spawn(objectTagBlock[0], startPosition[Random.Range(0,5)]);
+			timeToSpawn = Time.timeSinceLevelLoad + timeBetweenSpawn;
 		}
     }
 
@@ -74,11 +67,8 @@ public class BlockSpawn : MonoBehaviour
     {
         switch (block)
         {
-            case "Good":
+            case "Block":
                 objectPooler.SpawnFromPool(block, position, Quaternion.identity);
-                break;
-            case "Bad":
-                objectPooler.SpawnFromPool(block, position + blockOffset, Quaternion.identity);
                 break;
             case "Star":
                 objectPooler.SpawnFromPool(block, position + starOffset, Quaternion.identity);
@@ -88,18 +78,6 @@ public class BlockSpawn : MonoBehaviour
                 break;
             default:
                 break;
-        }
-    }
-
-    bool SideSelection(int percProbTrue)
-    {
-        int side = Random.Range(0, 99);
-        switch (side < percProbTrue)
-        {
-            case true:
-                return true;
-            default:
-                return false;
         }
     }
 }

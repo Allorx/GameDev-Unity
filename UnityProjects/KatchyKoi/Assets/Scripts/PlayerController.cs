@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     //new
     public Rigidbody2D rb;
+    public Color[] spriteColour;
     public float slowRange = 4;
     public Vector2 slowEffect = new Vector2(0, 0.01f);
     public float deathRange = 4;
@@ -39,11 +40,14 @@ public class PlayerController : MonoBehaviour
     Vector3 scaleRight = new Vector3(0.05f, 0.05f, 0f);
     Vector3 scaleIncrease = new Vector3(0.1f, 0.1f, 0.1f);
     Vector3 maxScale = new Vector3(2f, 2f, 2f);
+    int thisColour = -1;
+    SpriteRenderer m_SpriteRenderer;
 
     void Awake()
     {
         //new
         Physics2D.gravity = gravityDirection*0;
+        m_SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         //old
         ResetAchievementEffects();
         animControl = GetComponentInChildren<Animator>();
@@ -82,6 +86,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        CheckColour();
         if (playerCanMove)
         {
             //Jump against gravity
@@ -106,6 +111,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (TouchController.Tapped)
         {
+            //JumpAnim();
             FindObjectOfType<AudioController>().PlayAudio(1);
             if(rb.position.x > 0f && rb.position.x > 0.05f){
                 rb.AddForce(-forceVector*forceMultiplier*0.05f, ForceMode2D.Impulse);
@@ -162,7 +168,14 @@ public class PlayerController : MonoBehaviour
     }
     */
 
-    void EatAnim()
+    void CheckColour(){
+        if(thisColour != ColourManager.currentColour){
+            thisColour = ColourManager.currentColour;
+            m_SpriteRenderer.color = spriteColour[thisColour];
+        }
+    }
+
+    void JumpAnim()
     {
         animControl.Play("eat", -1, 0f);
     }

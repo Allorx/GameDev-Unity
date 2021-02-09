@@ -5,15 +5,16 @@ public class ObjectManager : MonoBehaviour
 {
     public SpriteRenderer spriteRend;
     public Color[] spriteColour;
-    public Sprite[] goodBlockSprite;
-    public Sprite[] badBlockSprite;
+    public Sprite[] blockSprite;
     public bool isGoodBlock = false;
     public bool isBadBlock = false;
     public bool isStar = false;
     public bool isCookie = false;
     TimeLimitController timeLimitControl;
     bool canBeDestroyed = true;
-    int randomNumber;
+    int randomSprite;
+    int randomColour;
+    int thisColour;
 
     void Awake()
     {
@@ -22,16 +23,30 @@ public class ObjectManager : MonoBehaviour
 
     void OnEnable()
     {
-        if (isGoodBlock)
+        randomSprite = Random.Range(0, blockSprite.Length);
+        spriteRend.sprite = blockSprite[randomSprite];
+        randomColour = Random.Range(0, spriteColour.Length);
+        spriteRend.color = spriteColour[randomColour];
+        thisColour = randomColour;
+    }
+
+    void TypeCheck()
+    {
+        switch (thisColour == ColourManager.currentColour)
         {
-            randomNumber = Random.Range(0, goodBlockSprite.Length);
-            spriteRend.sprite = goodBlockSprite[randomNumber];
+            case true:
+                isGoodBlock = true;
+                isBadBlock = false;
+                return;
+            default:
+                isGoodBlock = false;
+                isBadBlock = true;
+                return;
         }
-        else if (isBadBlock)
-        {
-            randomNumber = Random.Range(0, badBlockSprite.Length);
-            spriteRend.sprite = badBlockSprite[randomNumber];
-        }
+    }
+
+    void Update(){
+        TypeCheck();
     }
 
     void OnTriggerEnter2D(Collider2D colliderInfo)

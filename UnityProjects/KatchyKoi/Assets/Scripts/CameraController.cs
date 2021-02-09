@@ -27,10 +27,10 @@ public class CameraController : MonoBehaviour
         //Follow
         if(PlayerController.movementActivated && playerTransform.position.x < followRange && playerTransform.position.x > -followRange){
             Vector3 target = new Vector3(playerTransform.position.x, originalPos.y, originalPos.z);
-            camTransform.localPosition = Vector3.Lerp(camTransform.position, target, camSmoothing);
+            camTransform.position = Vector3.Lerp(camTransform.position, target, camSmoothing);
         }
         else{
-            originalPos = camTransform.localPosition;
+            originalPos = camTransform.position;
         }
     }
 

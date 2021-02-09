@@ -831,15 +831,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: Good
+  - tag: Block
     prefab: {fileID: 4492797035809452891, guid: 4bfdaae7fee0546c9975d44293c18a63, type: 3}
-    size: 20
-  - tag: Bad
-    prefab: {fileID: 7420230662240270349, guid: b1f5c0023a7424665b52a89fd0cd9c6d, type: 3}
-    size: 20
+    size: 30
   - tag: Star
     prefab: {fileID: 3757568888901620227, guid: d42b55a3f9b9d40fdb44317daf039156, type: 3}
-    size: 5
+    size: 10
   - tag: Cookie
     prefab: {fileID: 3757568888901620227, guid: ba188eaba63244b1b84bcb87ae729f10, type: 3}
     size: 5
@@ -855,10 +852,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66158599d39624bd4b063a79d785466d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectTagBad:
-  - Bad
-  objectTagGood:
-  - Good
+  objectTagBlock:
+  - Block
   objectTagStar:
   - Star
   objectTagCookie:
@@ -1194,6 +1189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 457275985}
   - component: {fileID: 457275984}
+  - component: {fileID: 457275986}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1230,6 +1226,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &457275986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457275983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0149705b167f648cd8cdc4ee1ebc2d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numColours: 5
+  colourChangeTime: 20
 --- !u!1 &487234281
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,7 +2156,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -7381665848409331096, guid: 23f7db6ad0a814b2da6293f9d8d6196c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -2178,7 +2188,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014563960}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f8704cab50ff04202b23596680b0cbf4, type: 2}
   m_CullingMode: 0
@@ -2196,7 +2206,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014563960}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16c0b6c57ee034f20928fec5143728f3, type: 3}
   m_Name: 
@@ -2610,7 +2620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.16053128}
   m_AnchorMax: {x: 0.5, y: 0.16053128}
-  m_AnchoredPosition: {x: 0, y: -61}
+  m_AnchoredPosition: {x: 0, y: -60.99994}
   m_SizeDelta: {x: 256, y: 302}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1208938807
@@ -2769,7 +2779,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2839,7 +2849,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -2862,6 +2872,7 @@ MonoBehaviour:
   camTransform: {fileID: 1220131006}
   playerTransform: {fileID: 1964303527}
   followRange: 2
+  camSmoothing: 0.1
   shakeAmount: 10
   decreaseFactor: 1
   decreaseShakeAmount: 0.1
@@ -3349,11 +3360,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8517493916302581954, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: -8517493916302581954, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: -7007011593607791872, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
       propertyPath: m_Name
@@ -3371,6 +3382,22 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6773423969703771881, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 826d58828a2e94514871037a9ca7f7cf, type: 3}
+    - target: {fileID: 6773423969703771881, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6773423969703771881, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6773423969703771881, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f397cad674a6a4e74b996c71ce91adcb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 6437531721940673314, guid: e0e8e3bfd60a64319bca01d351f2b96e, type: 3}
 --- !u!4 &1366782155 stripped
@@ -4851,8 +4878,8 @@ GameObject:
   - component: {fileID: 1964303527}
   - component: {fileID: 1964303526}
   - component: {fileID: 1964303525}
-  - component: {fileID: 1964303524}
   - component: {fileID: 1964303528}
+  - component: {fileID: 1964303524}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4860,8 +4887,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &1964303524
-BoxCollider2D:
+--- !u!58 &1964303524
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4873,19 +4900,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.008307576}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.9}
-  m_EdgeRadius: 0
+  m_Radius: 0.2
 --- !u!114 &1964303525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4914,9 +4931,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1964303528}
+  spriteColour:
+  - {r: 1, g: 0.0627451, b: 0, a: 1}
+  - {r: 0.7921569, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.53333336, b: 1, a: 1}
+  - {r: 1, g: 0.8980392, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.105882354, a: 1}
   slowRange: 4
   slowEffect: {x: 0, y: 1.5}
-  deathRange: 4
+  deathRange: 5.5
   crossMidVelocityReduction: 0.5
   forceMultiplier: 85
   amountGravity: 5
@@ -4945,7 +4968,7 @@ Transform:
   m_GameObject: {fileID: 1964303523}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.1, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 1366782155}
   - {fileID: 1708948211}
@@ -5266,7 +5289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1293603593108180, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5335,7 +5358,7 @@ PrefabInstance:
     - target: {fileID: 23420551826632114, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a8a2064660ecc42fab77221fa24060bd, type: 2}
+      objectReference: {fileID: 2100000, guid: ccb7f0054940c4de2be0ea41bc42ac28, type: 2}
     - target: {fileID: 102362823683043728, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_Color.rgba
       value: 4294967295
