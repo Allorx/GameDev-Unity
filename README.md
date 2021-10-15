@@ -1,6 +1,8 @@
 # GameDev
 
-This includes game files for simple games made in Unity
+This includes all files for games made in Unity.
 
-NOTE (to self) -> Munchy Tower assets are under PixelGameURP on Mackey
+# Munchy Tower released on Jan 2020
+
+You only have permission to use the code for personal/educational use. All rights are reserved.
 
