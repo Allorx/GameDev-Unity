@@ -1,4 +1,4 @@
-# GameDev_Unity
+# GameDev-Unity
 
 This includes all files for games made in Unity.
 
